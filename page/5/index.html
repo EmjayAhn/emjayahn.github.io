@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Hexo","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-12-07T14:41:49.000Z" title="2018. 12. 7. 오후 11:41:49">2018-12-07</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-12-08T13:54:28.000Z" title="2018. 12. 8. 오후 10:54:28">2018-12-08</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">2 minutes read (About 374 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/12/07/181207-TodayWhatILearned/">181207_TodayWhatILearned</a></h1><div class="content"><h1 id="181207-TWIL"><a href="#181207-TWIL" class="headerlink" title="181207 TWIL"></a>181207 TWIL</h1><hr>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>Pandas 3장, 4장(일부)</li>
+<li>(Project) 데이터셋 정하기</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>MySQL 복습, QUIZ 풀기</li>
+<li>새로운 데이터셋 EDA, Regression</li>
+<li>Pandas 4장, 7장</li>
+<li>지난 프로젝트(Flight_Delay Regression) Update</li>
+<li>알고리즘 추가과제 하나씩 풀기</li>
+</ol>
+<br>
+---
+## 무엇을 느꼈는가
+- 와.. 오늘은 그간의 파이썬과 알고리즘, 데이터 구조의 공부한 것을 평가받는 첫 시간이었다. 시간내에 주어진 문제를
+효율적으로 푸는 것이 생각보다 어려웠다. pandas의 method 나 numpy method 를 자주 사용하면서, 기본적인 내장 method 는 오히려 더 어색했다. 함수를 짜서, 테스트 케이스를 통과하다가 중간에 발생한 에러는 debugging을 하지 못했다.
+또한, 코드 역시 비효율적이고 못생겼다. pyint 의 PEP 8 점수 역시 매우 낮았다.
+- 다시한번 많이 부족함을 느꼈고, 더 공부해야되고 알아야 하는 것이 한참이나 많다.
+- 쌓이고 쌓이는 ToDoList 에서 우선순위를 매번 잘 매기고, 너무 한 issue 에만 묻혀있지 말아야하며, 동시에
+다양한 주제를 공부해야하므로 정리를 잘해야하고, 그 정리를 다음번에 참조할 수 있게 잘 기록해야하며, scheduling 을 효율적으로 해야하고, 무엇보다 그 순간에 매우 집중해야한다.
+---
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-12-05T14:50:40.000Z" title="2018. 12. 5. 오후 11:50:40">2018-12-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-12-05T14:54:22.000Z" title="2018. 12. 5. 오후 11:54:22">2018-12-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">4 minutes read (About 630 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/12/05/181205-TodayWhatILearned/">181205-TodayWhatILearned</a></h1><div class="content"><h1 id="181205-TWIL"><a href="#181205-TWIL" class="headerlink" title="181205 TWIL"></a>181205 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>QDA, LDA, 나이브 베이지안 모델 복습, 정리</li>
+</ol>
+<ul>
+<li>수식, Predict 과정 중심적으로 공부</li>
+</ul>
+<ol start="2">
+<li>(Study) A* 알고리즘 구현</li>
+<li>Pandas 3장</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>(Study) A* 알고리즘 손코딩</li>
+<li>QDA, LDA, 나이브 베이지안 모델 복습, 정리</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>(Study) A* 알고리즘 구현</li>
+<li>Pandas 3장</li>
+</ol>
+<br>
+---
+## 무엇을 느꼈는가
+- 스터디에서 다같이 알고리즘을 파악하고, 이를 바탕으로 손코딩을 진행했다. Class 단위로 짜는 거였고,
+우리끼리 자료들을 바탕으로 알고리즘을 공부하고, 이를 구현하는 것까지 개인적으로 매우 Challenging
+했다. 오늘 손코딩을 마무리 하면서, 머릿속에 있는 알고리즘을 어떻게 풀어내는지, 설계부터 각각의 함수까지
+계획을 세우는데 매우 큰 보람과 배움이 있었다.
+- 내일부터는 스터디원들과 함께 오늘 작성한 것을 바탕으로 실제 코딩을 들어갈 계획이다. 아직 미숙한 점이 많기에,
+손코딩을 진행한 것들에 대해 Debugging 이 많이 필요하겠지만, 너무 재미있는 시간이었다.
+- 오후 남은 시간에는 QDA 부터 나이브 베이지안 모델까지(gaussain, bernoulli, multinomial) 수식과
+그 메소드들을 하나하나 뜯어보고 분석하는 시간을 가졌다. 단순히 패키지의 메소드를 돌리면 되겠지가 아니라, 메소드를 돌리기전에
+간단한 data에 대해 결과를 얻기까지 직접 손으로 풀어보고 계산하여, 메소드를 돌렸을 때 결과와 비슷한지 확인 하는 시간을
+통해, 각 분포가 모델링 되는데까지 과정을 이해하는데 도움이 많이 되었다.
+- 또한 자료에 나오는 다양한 시각화 메소드, 시각화 하는데 필요한 domain 설정, Numpy와 Seaborn 의 메소드들을
+파악해보면서, 시각자료의 의도를 생각해보기도 하였다.
+- 많지 않은 범위를 이렇게 공부하다보니, 꽤많은 시간이 필요하여 오늘의 다른 목표들을 채우지는 못했지만,
+스터디와 개인 공부 두가지를 통해, 하루를 매우 생산적으로 보낸 것 같아 뿌듯하다.
+
+
+
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-12-04T23:48:55.000Z" title="2018. 12. 5. 오전 8:48:55">2018-12-05</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-12-05T00:21:28.000Z" title="2018. 12. 5. 오전 9:21:28">2018-12-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Math/">Math</a></span><span class="level-item">2 minutes read (About 281 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/12/05/Generative-Model/">Generative Model</a></h1><div class="content"><h1 id="확률론적-생성모형-Generative-Model"><a href="#확률론적-생성모형-Generative-Model" class="headerlink" title="확률론적 생성모형 (Generative Model)"></a>확률론적 생성모형 (Generative Model)</h1><h2 id="확률론적-생성모형의-기본-개념"><a href="#확률론적-생성모형의-기본-개념" class="headerlink" title="확률론적 생성모형의 기본 개념"></a>확률론적 생성모형의 기본 개념</h2><ul>
+<li><p>우리가 궁금한 것은 $ x $ (features) 들이 있을 떄, $ y $가 어떤 Class 인지 맞추는 것이다. 맞추기 위해서는 training set 으로 부터 각 Class 마다 $ P(y \mid x) $의 모형을 알아내야 한다.</p>
+</li>
+<li><p>베이즈 정리를 이용하여, $ y&#x3D;C_k $일 때의 조건부 확률을 구할 수 있다.<br>$$<br>P(y &#x3D; C_k \mid x) &#x3D; \dfrac{P(x \mid y &#x3D; C_k); P(y &#x3D; C_k)}{P(x)}<br>$$</p>
+</li>
+<li><p>이 때, $ P(x \mid y &#x3D; C_k) $<br> &#x3D;&#x3D; <strong>Likelihood</strong><br> &#x3D;&#x3D; y가 k라는 클래스 일 때, x의 확률을 구하는 것이 관건</p>
+</li>
+</ul>
+<h2 id="Likelihood-추정의-알고리즘"><a href="#Likelihood-추정의-알고리즘" class="headerlink" title="Likelihood 추정의 알고리즘"></a>Likelihood 추정의 알고리즘</h2><ol>
+<li>$ P(x \mid y &#x3D; C_k) $ 가 ** 어떤 ** 확률분포를 따를 것이다라고 가정<br><br><br></li>
+<li>x의 특성에 따라 우리가 알고 있는 특정 확률분포를 따른다! 라고 가정<br> <br><br></li>
+<li>Class k 를 만드는 data들을 통해 이 확률분포의 모수값을 구한다.<br> <br><br></li>
+<li>모수값을 안다 &#x3D;&#x3D; $ P(x \mid y &#x3D; C_k) $ 의 pdf 를 알고 있다.<br> <br><br></li>
+<li>test set x 가 들어오면 $ P(x \mid y &#x3D; C_k) $ 를 구할 수 있다.</li>
+</ol>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-12-04T02:10:00.000Z" title="2018. 12. 4. 오전 11:10:00">2018-12-04</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-12-05T00:18:58.000Z" title="2018. 12. 5. 오전 9:18:58">2018-12-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">2 minutes read (About 246 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/12/04/181204-TodayWhatILearned/">181204-TodayWhatILearned</a></h1><div class="content"><h1 id="181204-TWIL"><a href="#181204-TWIL" class="headerlink" title="181204 TWIL"></a>181204 TWIL</h1><hr>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>Heap 구조 공부, 코드 짜보기</li>
+<li>Logistic Regression method 정리</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>QDA, LDA, 나이브 베이지안 모델 복습, 정리</li>
+</ol>
+<ul>
+<li>특히, 수식들 정리 + Method보다는 predict 결과가 나오는 데까지 확률계산, 흐름 중점적으로 공부</li>
+</ul>
+<ol start="2">
+<li>(Study) A* 알고리즘 구현</li>
+<li>Pandas 3장<br></li>
+</ol>
+<hr>
+<h2 id="무엇을-느꼈는가"><a href="#무엇을-느꼈는가" class="headerlink" title="무엇을 느꼈는가"></a>무엇을 느꼈는가</h2><ul>
+<li>Heap 구조를 공부하면서, class 단위로 짜져 있는 코드들을 혼자서 구현하려면 어디서부터 계획을 세워야<br>되는가에 대해 고민했다. 또한, 어떤 이슈가 있을 때, 어떤 알고리즘과 자료구조를 선택해야하는지에 대한 판단<br>근거 역시 앞으로 정리 해야할 필요성을 느낀다.</li>
+<li>우선 간단하게 알고 있는 데이터 구조 전체에 대해 서로 비교하여 장, 단점 정도 빠른시일 내에 정리해야겠다.</li>
+</ul>
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-12-02T23:04:56.000Z" title="2018. 12. 3. 오전 8:04:56">2018-12-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-12-03T14:34:34.000Z" title="2018. 12. 3. 오후 11:34:34">2018-12-03</time></span><span class="level-item">2 minutes read (About 305 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/12/03/181203-TodayWhatILearned/">181203-TodayWhatILearned</a></h1><div class="content"><h1 id="181203-TWIL"><a href="#181203-TWIL" class="headerlink" title="181203 TWIL"></a>181203 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>Pandas Cookbook 2장 복습, 3장</li>
+<li>ROC 커브, Logistic Regression</li>
+<li>시간 날 때, 새로운 데이터셋 EDA</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>ROC, AUC, Logistic Regression 정리</li>
+<li>Flask_app : classification model application 코드 해석</li>
+<li>Pandas 2장 복습</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>Heap, Graph 부분 복습</li>
+<li>Pandas 3장, 4장</li>
+<li>새로운 데이터셋 EDA, Regression 함수 적용</li>
+</ol>
+<br>
+---
+## 무엇을 느꼈는가
+- Pandas를 조금씩 정리하고, 새로운 것들을 알게 되면서 이전에는 몰랐던 편리한 기능들이 많이 있음을 알게 되었다.
+손에 익히게 되면서 아주 조금씩 판다스에대해서 편해지기 시작하였다. Pandas 를 심도 있고 공부해보고자 했던 처음 이유인
+'데이터셋을 보고 먼저 손이 나가도록 하자'는 목표에는 아직도 멀었지만, 하루하루 조금씩 노력해온 1주 반동안,
+이전보다 조금더 편해졌다는 것이 느껴진다.
+- 이렇게 체감적으로, 한파트 한파트씩 아주 더디지만 조금씩 편해지고, 손에 익는 다는 것을 느끼면서, 점점더
+재미있어 질것이라 믿는다.
+---
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-11-29T13:57:28.000Z" title="2018. 11. 29. 오후 10:57:28">2018-11-29</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-29T14:00:09.000Z" title="2018. 11. 29. 오후 11:00:09">2018-11-29</time></span><span class="level-item"><a class="link-muted" href="/categories/wiki/">wiki</a><span> / </span><a class="link-muted" href="/categories/wiki/NGINX/">NGINX</a></span><span class="level-item">2 minutes read (About 238 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/29/NGINX/">NGINX</a></h1><div class="content"><h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="0-What-is-nginx"><a href="#0-What-is-nginx" class="headerlink" title="0. What is nginx?"></a>0. What is nginx?</h2><ul>
+<li>client 가 외부 IP와 그 포트를 통해 server 에 접근하면,</li>
+<li>그 때부터는 request 를 내부 IP 와 port 로 연결을 해주어야 한다.</li>
+<li>일종의 <code>proxy server</code> 역할을 해주는 것이 <code>nginx</code></li>
+</ul>
+<h2 id="1-Install-Nginx"><a href="#1-Install-Nginx" class="headerlink" title="1. Install Nginx"></a>1. Install Nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Manage-the-Nginx-Process"><a href="#2-Manage-the-Nginx-Process" class="headerlink" title="2. Manage the Nginx Process"></a>2. Manage the Nginx Process</h2><ul>
+<li>nginx Process<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#start Nginx</span></span><br><span class="line">$ sudo systemctl start nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#stop nginx</span></span><br><span class="line">$ sudo systemctl stop nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#restart nginx</span></span><br><span class="line">$ sudo systemctl restart nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#check status nginx</span></span><br><span class="line">$ sudo systemctl status nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># reload nginx</span></span><br><span class="line">$ sudo systemctl reload nginx</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-Structure"><a href="#3-Structure" class="headerlink" title="3. Structure"></a>3. Structure</h2><ul>
+<li><code>/etc/nginx</code><ul>
+<li>Nginx의 설정에 관련된 directory</li>
+</ul>
+</li>
+<li><code>/etc/nginx/nginx.conf</code><ul>
+<li>nginx의 <code>기본설정</code> 파일, <code>global</code>설정은 이 파일에서</li>
+</ul>
+</li>
+<li><code>/etc/nginx/sites-available/</code><ul>
+<li>포트 접속시 개별 설정하는 directory</li>
+<li>여기 안에 <code>default</code> 파일 변경</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Nginx-Configuration"><a href="#4-Nginx-Configuration" class="headerlink" title="4. Nginx Configuration"></a>4. Nginx Configuration</h2><h3 id="4-1-static-file-serving"><a href="#4-1-static-file-serving" class="headerlink" title="4.1 static file serving"></a>4.1 static file serving</h3><p><code>/etc/nginx/sites-available/default</code> 파일 수정</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  location / &#123;</span><br><span class="line">    root /path/to/html ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location /images/ &#123;</span><br><span class="line">    root /path/to/image;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-proxy-server"><a href="#4-2-proxy-server" class="headerlink" title="4.2 proxy server"></a>4.2 proxy server</h3><ul>
+<li>port 별로 설정이 가능하다<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  # default 는 80 port (http default)</span><br><span class="line">  # 8080 port 에 대해서</span><br><span class="line">  listen 8080;</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass http://localhost:8080;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>여러개의 포트를 연결</li>
+</ul>
+<pre><code>server &#123;
+  listen 8080;
+  listen 80;
+
+  location / &#123;
+    proxy_pass http://localhost:8080;
+  &#125;
+&#125;
+</code></pre>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-11-28T23:12:09.000Z" title="2018. 11. 29. 오전 8:12:09">2018-11-29</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-29T14:11:41.000Z" title="2018. 11. 29. 오후 11:11:41">2018-11-29</time></span><span class="level-item">2 minutes read (About 257 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/29/181129-TodayWhatILearned-1/">181129-TodayWhatILearned</a></h1><div class="content"><h1 id="181129-TWIL"><a href="#181129-TWIL" class="headerlink" title="181129 TWIL"></a>181129 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>Pandas ~ 150page</li>
+<li>wiki 구성 방안</li>
+<li>REST API, NGINX, AWS 공부</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>Pandas 80page</li>
+<li>wiki 구성</li>
+<li>REST API, NGINX, AWS 공부</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>Pandas 150page 마무리</li>
+<li>복습</li>
+</ol>
+<br>
+---
+## 무엇을 느꼈는가
+- 지금껏 구성해온 개인 wiki 혹은 cheatsheet등을 로컬 서버등을 이용해 wiki page 를 이용하고 싶었다.
+가장 많이 사용한다는 gollum api 를 설치해보았지만, 생각보다 편하지 않았다. gitlab이나 github 등은
+온라인에서 작성이 가능하지만, 로컬에서 그 해당 파일을 갖기가 불편했다. 또 검색기능도 중요했다.
+- 결국, 지금 작성하고 있는 git blog 에 wiki tab 관리로 하기로 했다.
+- 돌고돌아 gitblog 의 tab 을 활용해서 wiki 하기로 했다. 앞으로 좀더 깔끔하게 정리 파일을 관리하고,
+- 직접 참고할 자료이니, 무엇보다도 내가 보기 편해야 할 것이다.
+
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-11-28T12:24:06.000Z" title="2018. 11. 28. 오후 9:24:06">2018-11-28</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-28T14:35:26.000Z" title="2018. 11. 28. 오후 11:35:26">2018-11-28</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">a minute read (About 210 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/28/181128-TodayWhatILearned/">181128-TodayWhatILearned</a></h1><div class="content"><h1 id="181128-TWIL"><a href="#181128-TWIL" class="headerlink" title="181128 TWIL"></a>181128 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>~ Classification 성능평가</li>
+<li>수학 9장 2절</li>
+<li>Pandas ~ 100pages</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>~ Classification 성능평가</li>
+<li>수학 9장 2절</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>Pandas 100page<br></li>
+</ol>
+<hr>
+<h2 id="무엇을-느꼈는가"><a href="#무엇을-느꼈는가" class="headerlink" title="무엇을 느꼈는가"></a>무엇을 느꼈는가</h2><ul>
+<li>프로젝트를 한번 해서 그런지, 지금 공부하는 내용도 앞으로 프로젝트에서 어떻게 활용해야할지 염두? 걱정?<br>하며 공부를 하게 되는 것 같다. 메소드를 정리할 필요가 있고, 배우는 각 개념들이 어떤 판단을 바탕으로 사용해야<br>하는지 생각하며 공부하게 되는 것 같다.</li>
+<li>시간이 부족하여, 메소드들을 좀더 디테일하게 보지 못하는 아쉬움이 있지만, 이런 것들을 주말 등을 통하여<br>보충할 필요가 있다.</li>
+</ul>
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-11-26T22:12:01.000Z" title="2018. 11. 27. 오전 7:12:01">2018-11-27</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-28T23:11:52.000Z" title="2018. 11. 29. 오전 8:11:52">2018-11-29</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">2 minutes read (About 263 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/27/181127-TodayWhatILearned/">181127-TodayWhatILearned</a></h1><div class="content"><h1 id="181127-TWIL"><a href="#181127-TWIL" class="headerlink" title="181127 TWIL"></a>181127 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>알고리즘 복습</li>
+<li>Shell script cheatsheet 작성</li>
+<li>Pandas - 100page</li>
+<li>수학 9장-2절</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>알고리즘 복습</li>
+<li>Shell script cheatsheet 작성</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>Pandas - 100page</li>
+<li>수학 9장-2절</li>
+<li>Classification Intro, Scikit-Learn 의 전처리 부분 code 정리<br></li>
+</ol>
+<hr>
+<h2 id="무엇을-느꼈는가"><a href="#무엇을-느꼈는가" class="headerlink" title="무엇을 느꼈는가"></a>무엇을 느꼈는가</h2><ul>
+<li>알고리즘 복습이 계획했던 것 보다 훨씬더 오래 걸려서, 기존에 계획했던 Pandas 와 수학은 보지 못했다. 오늘 공부한 분류도 다시 공부해야하는 만큼, 내일 공부할 양은 매우 많을 것 같다.</li>
+<li>정리하는 내용들을 내가 보기 편하고, 쉽게 사용 할 수 있도록 하는 방법을 많이 고민해보아야겠다. 파일들이 누적되고 쌓이면서, 이제는 효율적으로 검색하거나 찾아서 볼 수 있는 것이 매우 중요한 것 같다. 어떻게 정리하거나 검색할 수 있는 Tool이 있을지 틈나는대로 생각해봐야겠다.</li>
+</ul>
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-11-26T02:20:14.000Z" title="2018. 11. 26. 오전 11:20:14">2018-11-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-26T14:11:56.000Z" title="2018. 11. 26. 오후 11:11:56">2018-11-26</time></span><span class="level-item"><a class="link-muted" href="/categories/Diary/">Diary</a></span><span class="level-item">2 minutes read (About 323 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/11/26/181126-TodayWhatILearned/">181126-TodayWhatILearned</a></h1><div class="content"><h1 id="181126-TWIL"><a href="#181126-TWIL" class="headerlink" title="181126 TWIL"></a>181126 TWIL</h1><hr>
+<h2 id="To-do-list-오늘-할일"><a href="#To-do-list-오늘-할일" class="headerlink" title="To-do-list : 오늘 할일"></a>To-do-list : 오늘 할일</h2><ol>
+<li>이미지 데이터 처리, 사운드 데이터 처리 공부</li>
+<li>Shell script 정리</li>
+<li>Pandas - 50page</li>
+<li>수학 8장-2절</li>
+</ol>
+<h2 id="오늘-한-일은-무엇인가"><a href="#오늘-한-일은-무엇인가" class="headerlink" title="오늘 한 일은 무엇인가"></a>오늘 한 일은 무엇인가</h2><ol>
+<li>Shell script 공부</li>
+</ol>
+<hr>
+<h2 id="내일-할-일은-무엇인가"><a href="#내일-할-일은-무엇인가" class="headerlink" title="내일 할 일은 무엇인가"></a>내일 할 일은 무엇인가</h2><ol>
+<li>알고리즘 복습</li>
+<li>Shell scipt cheatsheet 작성</li>
+<li>Pandas - 100 page</li>
+<li>수학 9장-2절</li>
+</ol>
+<br>
+---
+## 무엇을 느꼈는가
+- RedBlack tree 를 배우면서, 왜 color violation 을 해결하고, 색을 기준으로 정렬했을 때,
+O(logN) 으로 장점이 되는지에 관해 궁금하다. 자세한 수학적 증명보다, <b>color 와 알고리즘의 효율이
+어디서 연결</b> 되는지 궁금하다. 이런 궁금증들은 이렇게 메모 해두었다가, 여유가 생길 때 꼭 찾아 보아야 겠다.
+- shell script 기본 문법을 공부하면서, Python 이 얼마나 직관적인 언어인지 느꼈다. 직접 해보면서,
+while, if 조건문 등을 쓸때, 띄어쓰기에 예민했고, DO ~ DONE 의 couple 이 중요했다. 또한, if , case 가
+끝날 때는, 직관대로 done 이 아니라 fi, esac 등으로 닫아 줘야 하는 것이 위트 있지만서도,
+쉽게 기억될 것은 아님을 알게 되었다.
+
+<ul>
+<li>DO 도 OD 였다는데, 지금 OD 는 안되네.. DO 는 DONE 으로 쓰자 !!!!</li>
+</ul>
+<hr>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/4/">Previous</a></div><div class="pagination-next"><a href="/page/6/">Next</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/4/">4</a></li><li><a class="pagination-link is-current" href="/page/5/">5</a></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/9/">9</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">90</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">32</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">42</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Book/"><span class="level-start"><span class="level-item">Book</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Book/Digital-Image-Processing/"><span class="level-start"><span class="level-item">Digital Image Processing</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/DataScience/"><span class="level-start"><span class="level-item">DataScience</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/DataScience/Regression/"><span class="level-start"><span class="level-item">Regression</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/DataScience/Seminar/"><span class="level-start"><span class="level-item">Seminar</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/DataStructure/"><span class="level-start"><span class="level-item">DataStructure</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/"><span class="level-start"><span class="level-item">Development</span></span><span class="level-end"><span class="level-item tag">8</span></span></a><ul><li><a class="level is-mobile" href="/categories/Development/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Linux/"><span class="level-start"><span class="level-item">Linux</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Diary/"><span class="level-start"><span class="level-item">Diary</span></span><span class="level-end"><span class="level-item tag">43</span></span></a></li><li><a class="level is-mobile" href="/categories/Google-Cloud-Platform/"><span class="level-start"><span class="level-item">Google Cloud Platform</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/"><span class="level-start"><span class="level-item">Lecture</span></span><span class="level-end"><span class="level-item tag">10</span></span></a><ul><li><a class="level is-mobile" href="/categories/Lecture/CS224n/"><span class="level-start"><span class="level-item">CS224n</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/CS231n/"><span class="level-start"><span class="level-item">CS231n</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%AC/"><span class="level-start"><span class="level-item">딥러닝을 이용한 자연어 처리</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/MachineLearning/"><span class="level-start"><span class="level-item">MachineLearning</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/MachineLearning/Apache-Spark/"><span class="level-start"><span class="level-item">Apache Spark</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/MachineLearning/Pytorch/"><span class="level-start"><span class="level-item">Pytorch</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/MachineLearning/Vision/"><span class="level-start"><span class="level-item">Vision</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Paper/"><span class="level-start"><span class="level-item">Paper</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/"><span class="level-start"><span class="level-item">wiki</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/wiki/MySQL/"><span class="level-start"><span class="level-item">MySQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/NGINX/"><span class="level-start"><span class="level-item">NGINX</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Pillow/"><span class="level-start"><span class="level-item">Pillow</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Provision/"><span class="level-start"><span class="level-item">Provision</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Requests/"><span class="level-start"><span class="level-item">Requests</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Scrapy/"><span class="level-start"><span class="level-item">Scrapy</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Selenium/"><span class="level-start"><span class="level-item">Selenium</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Xpath/"><span class="level-start"><span class="level-item">Xpath</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-12-04T15:54:50.228Z">2022-12-05</time></p><p class="title"><a href="/2022/12/05/hello-world/">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-02-10T06:40:03.000Z">2022-02-10</time></p><p class="title"><a href="/2022/02/10/Regression-Score/">회귀 모델 성능평가지표 : MAE, MSE, RMSE, R2 Score</a></p><p class="categories"><a href="/categories/DataScience/">DataScience</a> / <a href="/categories/DataScience/Regression/">Regression</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-12-07T14:32:12.000Z">2021-12-07</time></p><p class="title"><a href="/2021/12/07/AWK-basics/">[Linux] AWK 간단 정리</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/Linux/">Linux</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-11-27T15:34:44.000Z">2021-11-28</time></p><p class="title"><a href="/2021/11/28/Docker/">Docker, 깔끔하고 빠른 분석.연구.개발 환경 세팅</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/Docker/">Docker</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-10-14T09:51:33.000Z">2021-10-14</time></p><p class="title"><a href="/2021/10/14/C-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%89%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A1-Operators/">[C++] 2.연산자(Operators)</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/C/">C++</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">February 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">November 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">October 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">September 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">August 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">July 2019</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">June 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">May 2019</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">January 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">December 2018</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">November 2018</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">October 2018</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS224n/"><span class="tag">CS224n</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS231n/"><span class="tag">CS231n</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Classification-%ED%99%95%EB%A5%A0%EB%A1%A0%EC%A0%81%EC%83%9D%EC%84%B1%EB%AA%A8%ED%98%95-Generative-%EC%83%9D%EC%84%B1%EB%AA%A8%ED%98%95-%EB%B6%84%EB%A5%98%EB%AA%A8%EB%8D%B8/"><span class="tag">Classification, 확률론적생성모형, Generative, 생성모형, 분류모델</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crawling-Web-Requests/"><span class="tag">Crawling, Web, Requests</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data/"><span class="tag">Data</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DataAnalysis/"><span class="tag">DataAnalysis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DataScience/"><span class="tag">DataScience</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Gan/"><span class="tag">Gan</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Google-Cloud-Platform/"><span class="tag">Google Cloud Platform</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Language/"><span class="tag">Language</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Seminar/"><span class="tag">Seminar</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TWIL/"><span class="tag">TWIL</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vanilla-Gan/"><span class="tag">Vanilla Gan</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/awk/"><span class="tag">awk</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/crontab/"><span class="tag">crontab</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/datastructure/"><span class="tag">datastructure</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/datastructure-stack/"><span class="tag">datastructure, stack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/decorator/"><span class="tag">decorator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterable/"><span class="tag">iterable</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mysql-MYSQL-database/"><span class="tag">mysql, MYSQL, database</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nginx-proxy/"><span class="tag">nginx, proxy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/paper/"><span class="tag">paper</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pillow-Pillow-image/"><span class="tag">pillow, Pillow, image</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scrapy-crawling-web/"><span class="tag">scrapy, crawling, web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/summary/"><span class="tag">summary</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%85%BC%EB%AC%B8/"><span class="tag">논문</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">데코레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%8F%84%EC%BB%A4/"><span class="tag">도커</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%A6%AC%EB%88%85%EC%8A%A4/"><span class="tag">리눅스</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94/"><span class="tag">이터러블</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">이터레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9E%90%EB%8F%99%ED%99%94-selenium-webdriver/"><span class="tag">자동화, selenium, webdriver</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%A0%9C%EB%84%88%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">제너레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%ED%81%AC%EB%A1%A0%ED%83%AD/"><span class="tag">크론탭</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2022 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
