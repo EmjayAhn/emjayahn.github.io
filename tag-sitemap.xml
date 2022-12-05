@@ -3,36 +3,57 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/setting/</loc>
+        <lastmod>2022-12-05T11:07:04.847Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD/</loc>
+        <lastmod>2022-12-05T11:07:04.847Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/development/</loc>
+        <lastmod>2022-12-05T11:07:04.847Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/git/</loc>
+        <lastmod>2022-12-05T11:07:04.847Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/</loc>
-        <lastmod>2022-12-04T16:22:04.154Z</lastmod>
+        <lastmod>2022-12-05T08:54:55.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://emjayahn.github.io/tags/machine-learning/</loc>
-        <lastmod>2022-12-04T16:22:04.154Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://emjayahn.github.io/tags/setting/</loc>
-        <lastmod>2022-12-04T16:22:04.154Z</lastmod>
+        <lastmod>2022-12-05T08:54:55.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://emjayahn.github.io/tags/lightgbm/</loc>
-        <lastmod>2022-12-04T16:22:04.154Z</lastmod>
+        <lastmod>2022-12-05T08:54:55.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://emjayahn.github.io/tags/linux/</loc>
-        <lastmod>2022-12-04T16:22:04.154Z</lastmod>
+        <lastmod>2022-12-05T08:54:55.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
