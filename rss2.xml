@@ -6,7 +6,7 @@
   <link href="https://emjayahn.github.io/rss2.xml" rel="self"/>
   
   <link href="https://emjayahn.github.io/"/>
-  <updated>2022-12-05T11:07:04.847Z</updated>
+  <updated>2022-12-11T16:30:15.433Z</updated>
   <id>https://emjayahn.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[MAC] xcrun: error: invalid active developer 에러 해결방법</title>
+    <link href="https://emjayahn.github.io/2022/12/12/20221212-mac-xcrunn-error-invalid-active-ddeveloper-error/"/>
+    <id>https://emjayahn.github.io/2022/12/12/20221212-mac-xcrunn-error-invalid-active-ddeveloper-error/</id>
+    <published>2022-12-11T16:24:43.000Z</published>
+    <updated>2022-12-11T16:30:15.433Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>방금 전, MacOS Ventura 13.0.1로 업그레이드 하고, flutter, python 개발 중 다음 과 같은 에러 코드를 내뱉으며 잘 되던 것들이 안되기 시작했다.<br>간단한 git부터 시작해서, 맥 내 환경변수를 포함하는 대부분의 명령어에서 다음과 같은 에러 메시지를 보냈다. 다음 글에서 그 해결방법을 정리했다.</p><span id="more"></span><h2 id="Error-Message"><a href="#Error-Message" class="headerlink" title="Error Message"></a>Error Message</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</span><br></pre></td></tr></table></figure><p><img src="/2022/12/12/20221212-mac-xcrunn-error-invalid-active-ddeveloper-error/Untitled.png" alt="[Error Message] xcrun: error: invalid active developer"></p><p>[Error Message] xcrun: error: invalid active developer</p><p>이런 현상은 맥 OS를 업데이트하면 종종 나타나왔었는데, M1으로 넘어오고나서는 처음 보는 현상이기에 해결법도 여전한지 확인해보며, 이 글을 적고 있다.</p><h2 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h2><p>맥의 개발자 도구인 CommandLineTools를 재설치하여 해당 에러를 고칠 수 있다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;방금 전, MacOS Ventura 13.0.1로 업그레이드 하고, flutter, python 개발 중 다음 과 같은 에러 코드를 내뱉으며 잘 되던 것들이 안되기 시작했다.&lt;br&gt;간단한 git부터 시작해서, 맥 내 환경변수를 포함하는 대부분의 명령어에서 다음과 같은 에러 메시지를 보냈다. 다음 글에서 그 해결방법을 정리했다.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://emjayahn.github.io/categories/Development/"/>
+    
+    <category term="Error&amp;Solution" scheme="https://emjayahn.github.io/categories/Development/Error-Solution/"/>
+    
+    
+    <category term="error" scheme="https://emjayahn.github.io/tags/error/"/>
+    
+    <category term="solution" scheme="https://emjayahn.github.io/tags/solution/"/>
+    
+    <category term="mac" scheme="https://emjayahn.github.io/tags/mac/"/>
+    
+    <category term="xcrun" scheme="https://emjayahn.github.io/tags/xcrun/"/>
+    
+    <category term="commandlinetools" scheme="https://emjayahn.github.io/tags/commandlinetools/"/>
+    
+  </entry>
   
   <entry>
     <title>[github] github token 설정 및 키체인 등록</title>
@@ -69,9 +100,9 @@
     <category term="Linux" scheme="https://emjayahn.github.io/categories/Development/Linux/"/>
     
     
-    <category term="setting" scheme="https://emjayahn.github.io/tags/setting/"/>
-    
     <category term="linux" scheme="https://emjayahn.github.io/tags/linux/"/>
+    
+    <category term="setting" scheme="https://emjayahn.github.io/tags/setting/"/>
     
     <category term="lightgbm" scheme="https://emjayahn.github.io/tags/lightgbm/"/>
     
@@ -539,31 +570,6 @@
     <category term="제너레이터" scheme="https://emjayahn.github.io/tags/%EC%A0%9C%EB%84%88%EB%A0%88%EC%9D%B4%ED%84%B0/"/>
     
     <category term="이터러블" scheme="https://emjayahn.github.io/tags/%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[CS224n]Lecture01-WordVecs</title>
-    <link href="https://emjayahn.github.io/2019/07/06/CS224n-Lecture01-Summary/"/>
-    <id>https://emjayahn.github.io/2019/07/06/CS224n-Lecture01-Summary/</id>
-    <published>2019-07-06T08:38:25.000Z</published>
-    <updated>2019-07-18T11:42:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="CS224n-Lecture-1-Introduction-and-Word-Vectors"><a href="#CS224n-Lecture-1-Introduction-and-Word-Vectors" class="headerlink" title="[CS224n] Lecture 1: Introduction and Word Vectors"></a>[CS224n] Lecture 1: Introduction and Word Vectors</h1><p>Standford University 의 CS224n 강의를 듣고 정리하는 글입니다.</p><span id="more"></span><h2 id="1-Human-Language-and-Word-Meaning"><a href="#1-Human-Language-and-Word-Meaning" class="headerlink" title="1. Human Language and Word Meaning"></a>1. Human Language and Word Meaning</h2><p><strong>Word meaning</strong> 의 뜻 : symbol → idea or thing : Denotational Semantics</p><p>우리가 ‘의자’라는 단어를 예로 들자면, 말하는 사람과 듣는 사람 모두 의자와 관련된 특정한 이미지와 아이디어 등을 생각해 볼 수 있다. 이렇게 단어에 대해 관념적인 것을 word meaning 이라고 할 수 있다. 그렇다면 컴퓨터에서 사용할 수 있는 <strong>word meaning</strong> 은 어떤 것이 있을까?</p><h3 id="In-Computer-Word-Representations"><a href="#In-Computer-Word-Representations" class="headerlink" title="In Computer Word Representations"></a>In Computer Word Representations</h3><ol><li>WordNet: synonym 과 hypernyms 의 집합으로 표현 (e.g: nltk wordnet)<ul><li>아주 귀한 dataset 이지만,</li><li>단점: Nuance (뉘앙스)를 담아내지 못함, 새로운 단어에 대해 사람이 직접 가공하여 추가해주어야 한다. 단어의 동의어에 대해 계산할 수 없음</li></ul></li><li>Discrete Symbols: One-hot-vectors<ul><li>단점 : 벡터의 차원이 우리가 가지고 있는 단어의 갯수만큼 커지게 된다. Corpus 의 구성 단어가 커질 수록 계산 해야하는 벡터 차원이 매우 커진다. 이는 컴퓨팅 자원의 부족으로 인한 현실적 구현의 어려움을 야기시킨다.</li><li>One-hot-Vector 는 Vector Space 에서 모두 서로 orthogonal (직교)한다. 즉, similarity 가 모두 0으로 단어간의 관계를 알기 힘들다.</li></ul></li><li>By CONTEXT: Word Vecttors<ul><li>“You shall know a word by the company it keeps” (J.R.Firth)</li><li>어떤 특정 단어 w 가 나온다는 것은, 그 주변 단어들(context)이  있기 때문이다.</li><li>Word Vectors &#x3D;&#x3D; Word Embeddings &#x3D;&#x3D; Word Representations &#x3D;&#x3D; Distributed Representation</li></ul></li></ol><h2 id="2-Word2vec-Introduction"><a href="#2-Word2vec-Introduction" class="headerlink" title="2. Word2vec Introduction"></a>2. Word2vec Introduction</h2><p>Word2vec(Mikolov et al. 2013) 은 Word Vectors 를 만들기 위한 알고리즘 중 가장 기초 뼈대를 이루는 알고리즘이다.</p><ol><li>가지고 있는 텍스트 데이터를 구성하는 큰 CORPUS</li><li>Corpus 의 모든 단어는 RandomVector 로 시작한다.</li><li>각 position t 에 대해, 중심단어 c(center) 와 주변단어 o(outside) 를 생각할 수 있다.</li><li>중심단어 c 가 주어질 때, 주변단어 o 의 확률을 구하기 위해(skip-gram)(반대로도 가능(cbow): 주변단어가 주어질 때, 중심단어의 확률을 구하는 방법), 중심단어 c 와 주변단어 o, word 벡터들에 대해 similarity를 구한다.</li><li>위의 확률을 최대화 하기 위해 word vector 를 updating 한다.</li></ol><p><img src="/2019/07/06/CS224n-Lecture01-Summary/Untitled-cc28ca48-12e4-4a20-a6c4-b0be86d339d8.png"></p><h2 id="3-Word2vec-objective-function-gradients"><a href="#3-Word2vec-objective-function-gradients" class="headerlink" title="3. Word2vec objective function gradients"></a>3. Word2vec objective function gradients</h2><p>문장의 특정 위치 t 에 대해 (t &#x3D; 1, …, T), 중심단어w_j가 주어졌을때, 주변단어를 한정하는 window size m 에 대해  주변단어들을 예측하는 Likelihood 는 다음과 같습니다. likelihood 식을 해석해보면, 중심단어 w_t 에 대해 중심단어를 중심으로 window 사이즈 2m 개의 단어들의 확률을 모두 곱하고, T 개의 단어 갯수에 대해 또 다시 모두 곱합니다.</p><p>$$Likelihood\quad L(\theta)&#x3D; \prod_{t&#x3D;1}^{T}\prod_{-m \leq j \leq m}P(w_{t+j}|w_{t};\theta)$$</p><p>목적함수는 likelihood 를 바탕으로 minimize와 average, 계산 편의를 위해 log 를 씌웠다는 것외에 likelihood 와 동일하다.</p><p>$$objective function \quad J(\theta) &#x3D; - \frac{1}{T}logL(\theta)&#x3D;-\frac{1}{T}\sum_{t&#x3D;1}^{T}\sum_{-m \leq j \leq m, j\neq0}logP(w_{t+j} | w_{t};\theta)$$</p><p>단어가 등장할 확률을 구하는 방법은 Softmax Function 을 활용합니다.</p><p><img src="/2019/07/06/CS224n-Lecture01-Summary/Untitled-99acc04b-91fd-451c-868f-574d995778b3.png"></p><h3 id="Objective-Function-의-derivative"><a href="#Objective-Function-의-derivative" class="headerlink" title="Objective Function 의 derivative"></a>Objective Function 의 derivative</h3><p>Objective Function 과 단어 확률 (Softmax) 의 미분을 구하는 과정이다. </p><p><img src="/2019/07/06/CS224n-Lecture01-Summary/Untitled-d45516b7-8024-457c-bda2-39092a1f6892.png"></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;CS224n-Lecture-1-Introduction-and-Word-Vectors&quot;&gt;&lt;a href=&quot;#CS224n-Lecture-1-Introduction-and-Word-Vectors&quot; class=&quot;headerlink&quot; title=&quot;[CS224n] Lecture 1: Introduction and Word Vectors&quot;&gt;&lt;/a&gt;[CS224n] Lecture 1: Introduction and Word Vectors&lt;/h1&gt;&lt;p&gt;Standford University 의 CS224n 강의를 듣고 정리하는 글입니다.&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Lecture" scheme="https://emjayahn.github.io/categories/Lecture/"/>
-    
-    <category term="CS224n" scheme="https://emjayahn.github.io/categories/Lecture/CS224n/"/>
-    
-    
-    <category term="CS224n" scheme="https://emjayahn.github.io/tags/CS224n/"/>
-    
-    <category term="summary" scheme="https://emjayahn.github.io/tags/summary/"/>
     
   </entry>
   

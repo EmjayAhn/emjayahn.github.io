@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/categories/Development/Error-Solution/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/categories/Development/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/categories/wiki/NGINX/</loc>
         <lastmod>2022-12-07T10:53:51.746Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,13 +73,6 @@
 
     <url>
         <loc>https://emjayahn.github.io/categories/Development/Git/</loc>
-        <lastmod>2022-12-05T11:07:04.847Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://emjayahn.github.io/categories/Development/</loc>
         <lastmod>2022-12-05T11:07:04.847Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

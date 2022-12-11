@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/commandlinetools/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/xcrun/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/mac/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/solution/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/error/</loc>
+        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/proxy/</loc>
         <lastmod>2022-12-07T10:53:51.746Z</lastmod>
         <changefreq>weekly</changefreq>
