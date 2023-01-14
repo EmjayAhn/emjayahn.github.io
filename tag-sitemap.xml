@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/%ED%9A%8C%EA%B3%A0/</loc>
+        <lastmod>2023-01-14T14:56:59.567Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EC%A7%80%EC%9B%90%EC%84%9C/</loc>
+        <lastmod>2023-01-14T14:56:59.567Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EA%B8%80%EB%98%90/</loc>
+        <lastmod>2023-01-14T14:56:59.567Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/commandlinetools/</loc>
         <lastmod>2022-12-11T16:30:15.433Z</lastmod>
         <changefreq>weekly</changefreq>
