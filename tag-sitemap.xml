@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/%EB%AA%A9%ED%91%9C/</loc>
+        <lastmod>2023-02-04T11:54:44.199Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EA%B8%80%EB%98%90/</loc>
+        <lastmod>2023-02-04T11:54:44.199Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/%ED%9A%8C%EA%B3%A0/</loc>
         <lastmod>2023-01-14T14:56:59.567Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -11,13 +25,6 @@
 
     <url>
         <loc>https://emjayahn.github.io/tags/%EC%A7%80%EC%9B%90%EC%84%9C/</loc>
-        <lastmod>2023-01-14T14:56:59.567Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://emjayahn.github.io/tags/%EA%B8%80%EB%98%90/</loc>
         <lastmod>2023-01-14T14:56:59.567Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
