@@ -3,14 +3,35 @@
 
 
     <url>
-        <loc>https://emjayahn.github.io/tags/%EB%AA%A9%ED%91%9C/</loc>
-        <lastmod>2023-02-04T11:54:44.199Z</lastmod>
+        <loc>https://emjayahn.github.io/tags/Look-alike/</loc>
+        <lastmod>2023-02-26T06:02:39.607Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/</loc>
+        <lastmod>2023-02-26T06:02:39.607Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0/</loc>
+        <lastmod>2023-02-26T06:02:39.607Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://emjayahn.github.io/tags/%EA%B8%80%EB%98%90/</loc>
+        <lastmod>2023-02-26T06:02:39.607Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EB%AA%A9%ED%91%9C/</loc>
         <lastmod>2023-02-04T11:54:44.199Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -374,14 +395,14 @@
     </url>
 
     <url>
-        <loc>https://emjayahn.github.io/tags/summary/</loc>
+        <loc>https://emjayahn.github.io/tags/CS224n/</loc>
         <lastmod>2019-08-09T13:29:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://emjayahn.github.io/tags/CS224n/</loc>
+        <loc>https://emjayahn.github.io/tags/summary/</loc>
         <lastmod>2019-08-09T13:29:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
