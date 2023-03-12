@@ -6,7 +6,7 @@
   <link href="https://emjayahn.github.io/rss2.xml" rel="self"/>
   
   <link href="https://emjayahn.github.io/"/>
-  <updated>2023-02-26T06:02:39.607Z</updated>
+  <updated>2023-03-12T05:35:52.006Z</updated>
   <id>https://emjayahn.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[논문리뷰] Real-time Attention Based Look-alike Model for Recommender System (Part 2)</title>
+    <link href="https://emjayahn.github.io/2023/03/12/20230312-paper-RALM-2/"/>
+    <id>https://emjayahn.github.io/2023/03/12/20230312-paper-RALM-2/</id>
+    <published>2023-03-12T05:34:24.000Z</published>
+    <updated>2023-03-12T05:35:52.006Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>본 글에서는 Real-time Attention Based Look-alike Model for Recommender System 논문의 후반부 심을 살펴보고자 한다. 특히 Online Processing, Online Serving 파트를 집중적으로 살펴보자.</p><span id="more"></span><h3 id="Key-Features"><a href="#Key-Features" class="headerlink" title="Key Features"></a>Key Features</h3><p>본 논문의 핵심은 3가지로 구분된다. 1. User representation을 학습하는 offline train model 2. Seeds representation 을 학습하는 비동기 online processing 3. user와 seed간의 similarity를 계산하고, 점수를 매겨 서빙하는 Online Serving</p><p>지난 Part 1에서 User representation과 offline train model을 살펴보았다면, 이번 글에서는 비동기 online processing 과 Online serving 부분에 대해 살펴보자.</p><h3 id="1-Online-Asynchronous-Processing"><a href="#1-Online-Asynchronous-Processing" class="headerlink" title="1. Online Asynchronous Processing"></a>1. Online Asynchronous Processing</h3><p>비동기 온라인 프로세싱에서의 핵심은  앞서 데이터베이스에 가지고 있는 유저 pool의 표현 방식 seeds representation을 실시간으로 업데이트 하는 것이다. Seeds는 시스템이 지속되고, 그 pool이 늘어남에 따라 계속 축적될 것이다. 또한 가지고 있는 유저는 계속 그 행동과 히스토리 데이터를 남길 것이고 그 데이터에 따라 유저를 표현하는 방식도 최신화 되어야만한다. 따라서 이 representation 은 주기적인 업데이트가 필요하고, 수많은 seeds를 효율적으로 관리하고 비슷한 seeds를 구분 짓기 위해 군집화를 시행한다. 비동기 온라인 프로세싱은 다음 두 가지로 구성된다.</p><p><strong>User feedback monitor</strong></p><p>Seed의 클릭, 페이지 방문 등 프로파일 데이터를 모니터링 하며, 다음 클러스터링에 영향을 주게 되는 user profile 을 실시간으로 업데이트한다. 이 논문에서는 3백만의 click 데이터를 활용하여 seed들의 profile을 업데이트 했다.</p><p><strong>Seeds Clustering</strong></p><p>K-means 알고리즘을 이용해 seed 들을 k 개의 군집으로 clustering 하였다. 각 cluster의 중심점과 업데이트 되는 중심점은 저장해 놓고, 이를 seeds의 raw representation  $R_{seeds}$ 개념으로 보았다.</p><p>$$<br>R_{seeds} &#x3D; &lt;!–swig￼0–&gt;, E_{centroid_{2}}, E_{centroid_{3}} ,…, E_{centroid_{k}}}}<br>$$</p><h3 id="2-Online-Serving"><a href="#2-Online-Serving" class="headerlink" title="2. Online Serving"></a>2. Online Serving</h3><p>이 온라인 서빙 부분은 실제 구현하는 각 회사나 개인의 환경에 따라 본 논문의 형태와는 다를 수 있겠다. 하지만 나 역시 이 부분의 이해를 토대로 회사의 환경에 맞게 응용하여 적용하였으므로 차분히 살펴보자.</p><p>이 모델이 서빙이 될 때, 그 input 부터 살펴보면 다음과 같다.</p><ol><li>Current user → Fetch look-alike embedding</li><li>Fetch the centroid embeddings</li><li>Predict global embedding (global attention unit)</li><li>Predict local embedding (local attention unit)</li><li>Calculate global similarity &amp; local similarity</li></ol><p>위 단계별로 걸쳐진 global similarity와 local similarity는 다음의 식으로 통합된다.</p><p>$$<br>score_{u, s} &#x3D; \alpha cosine(E_{u}, E_{global_{s}})+ \beta cosine(E_{u}, E_{local_{s}})<br>$$</p><ul><li>$E_{global_{s}}$ : seeds의 global embedding</li><li>$E_{local_{s}}$ : seeds의 local embedding</li><li>$\alpha , \beta$ : global similarity와 local similarity의 각 가중치 (본 논문에서는 $\alpha&#x3D;0.3$, $\beta &#x3D;0.7$로 적용했다.)</li></ul><p>이렇게 앞서 만든 모델들의 각 유닛에 input 과 cluster embedding 간의 유사도 계산을 통해 최종 계산된 본 유사도를 활용하여 user extension 의 그룹을 정할 수 있다.</p><h3 id="3-본-논문-리뷰를-마치며"><a href="#3-본-논문-리뷰를-마치며" class="headerlink" title="3. 본 논문 리뷰를 마치며"></a>3. 본 논문 리뷰를 마치며</h3><p>회사의 업무로써 이 논문을 처음 읽었을 때는 그리 크게 감탄하지 못했다. 하지만 본격적으로 구현해보면서, 본 논문의 주장하는 바와 그 주장이 논리적으로 다가와 내게 “Aha”포인트를 주어, 이 논문을 정리하고 공유해보고 싶었다. 이 논문의 인상 깊은 점은 attention unit 을 통한 global , local 유저간의 유사도를 얻는 아이디어 였다. attention unit을 제외하고 이 모델을 살펴 보면, linear regression을 이용한 user extension 과 크게 다르지 않다는 것을 알 수 있다.</p><p>다른 분야(NLP)의 전유물이라고만 느껴왔던 attention unit 을 적용하는 아이디어에 대해 다시 한번 감탄하며 나 역시 분야를 가리지 않는 스터디를 통해 창의적인 시도를 계속 해봐야겠다는 다짐을 한다.</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;본 글에서는 Real-time Attention Based Look-alike Model for Recommender System 논문의 후반부 심을 살펴보고자 한다. 특히 Online Processing, Online Serving 파트를 집중적으로 살펴보자.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Paper" scheme="https://emjayahn.github.io/categories/Paper/"/>
+    
+    
+    <category term="글또" scheme="https://emjayahn.github.io/tags/%EA%B8%80%EB%98%90/"/>
+    
+    <category term="논문리뷰" scheme="https://emjayahn.github.io/tags/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0/"/>
+    
+    <category term="추천시스템" scheme="https://emjayahn.github.io/tags/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/"/>
+    
+    <category term="Look-alike" scheme="https://emjayahn.github.io/tags/Look-alike/"/>
+    
+  </entry>
   
   <entry>
     <title>[논문리뷰] Real-time Attention Based Look-alike Model for Recommender System (Part 1)</title>
@@ -530,33 +557,6 @@
     <category term="decorator" scheme="https://emjayahn.github.io/tags/decorator/"/>
     
     <category term="데코레이터" scheme="https://emjayahn.github.io/tags/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[CS231n]Lecture09-CNN Architectures</title>
-    <link href="https://emjayahn.github.io/2019/07/26/CS231n-Lecture09-Summary/"/>
-    <id>https://emjayahn.github.io/2019/07/26/CS231n-Lecture09-Summary/</id>
-    <published>2019-07-26T11:40:18.000Z</published>
-    <updated>2019-07-26T11:42:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Lecture-09-CNN-Architectures"><a href="#Lecture-09-CNN-Architectures" class="headerlink" title="Lecture 09: CNN Architectures"></a>Lecture 09: CNN Architectures</h1><ul><li>이 글은, Standford University 의 CS231n 강의를 듣고 스스로 정리 목적을 위해 적은 글입니다.</li></ul><span id="more"></span><p>이번 강의에서는 최초의 CNN 모델부터, ImageNet 대회에서 역대 좋은 스코어를 기록한 유명한 convnet 구조에 대해 살펴본다. 강의 summary 는 강의 내용 중심과 수업 중 궁금한 사항을 따로 찾아본 내용 위주로 정리한다. 해당 모델의 자세한 내용은 논문을 참조했다.</p><h2 id="1-AlexNet"><a href="#1-AlexNet" class="headerlink" title="1. AlexNet"></a>1. AlexNet</h2><p>Lenet 이후, 가장 처음으로 나온 large scale convnet model 이다. Architecture 는 다음과 같다. 수업시간에는 CONV1 과  Max Pooling layer 에 대해서만 각 layer 의 output volume size 와 parameter 갯수를 확인했으나, 연습과 공부를 위해 전체 layer 에 대해 계산해본다.</p><ul><li><p>Architecture</p><p>  CONV1</p><p>  MAX POOL1</p><p>  NORM1</p><p>  CONV2</p><p>  MAX POOL2</p><p>  NORM 2</p><p>  CONV3</p><p>  CONV4</p><p>  CONV5</p><p>  MAX POOL3</p><p>  FC6</p><p>  FC7</p><p>  FC8</p></li></ul><ol><li>Input 이 227 x 227 x 3 image 가 들어갈 때, CONV1 (96 11x11 filter, stride 4)의 output volume size ? <ul><li>(227 - 11) &#x2F; 4 + 1 &#x3D; 55 이므로, 55 x 55 x 96</li></ul></li><li>Conv1 의 weight 갯수 ?<ul><li>filter size 11 * 11 * 3 (channel) * 96 (filter 갯수) &#x3D; 34,849개</li></ul></li><li>MAX POOL (3 x 3 filter, stride 2) output volume size?<ul><li>(55 - 3) &#x2F; 2 + 1 &#x3D; 27</li><li>27 x 27 x 96</li></ul></li><li>MAX POOL 의 weight 갯수?<ul><li>Pooling 은 weight 이 없으니까, 낚이지말자. (낚일 수 없는 낚시지..)</li></ul></li><li>NORM Layer 는?<ul><li>Normalization 만 해주는 것이므로 output size 는 27 x 27 x 96 으로 동일</li></ul></li><li>CONV2 layer (256 5 x 5 filters, stride 1, padding 2) 의 output volume size 와 parameter 갯수?<ul><li>(27 - 5 + 4) &#x2F; 1 + 1 &#x3D; 27</li><li>output volume size : 27 x 27 x 256</li><li>parameter 갯수: 5 * 5 * 96 (channel) * 256 (filter 갯수 ) &#x3D; 614,400</li></ul></li><li>MAX POOL2 ( 3 x 3 filters, stride 2) output volume size?<ul><li>(27 - 3) &#x2F; 2 + 1 &#x3D; 13</li><li>output volume size: 13 x 13 x 256</li></ul></li><li>CONV3 layer ( 384 3 x 3 filters, stride 1, padding 1)의 output volume size 와 parameter 갯수?<ul><li>(13-3+2) &#x2F; 1 + 1 &#x3D;  13</li><li>ouput volume size &#x3D; 13 x 13 x 384</li><li>parameters: 13 * 13 * 256(channels) * 384 &#x3D; 16,613,376</li></ul></li><li>CONV4 layer (384 3x3 filters stride 1, padding 1)<ul><li>(13 - 3 + 2) &#x2F; 1 + 1 &#x3D; 13</li><li>output volume size &#x3D; 13 x 13 x 384</li><li>parameters: 13 * 13 * 384(channels) * 384 &#x3D; 24,920,064</li></ul></li><li>CONV5 layer (256 3x3 filters stride 1 , padding 1)<ul><li>(13 - 3 + 2) &#x2F; 1 + 1 &#x3D; 13</li><li>output volume size &#x3D; 13 x 13 x 256</li><li>parameters: 13 * 13 * 384 * 256 &#x3D; 16,613,376</li></ul></li><li>MAX POOL3 (3 x 3 filters strides 2)<ul><li>(13 - 3) &#x2F; 2 + 1 &#x3D; 6</li><li>output volume size: 6 x 6 x 256</li></ul></li></ol><h3 id="AlexNet-의-특이점"><a href="#AlexNet-의-특이점" class="headerlink" title="AlexNet 의 특이점"></a>AlexNet 의 특이점</h3><ol><li>당시 GPU 메모리의 부족으로, CONV1 layer 의 경우 depth 가 96이었으나, 48 개씩 (반반) 다른 GPU 에 올려져 계산이 진행되었다. 이는 서로가 데이터를 바라볼수 없다는 것을 의미한다. 마찬가지 의미로, CONV2, CONV4, CONV5의 경우 서로 다른 gpu 상에 올라가 있는 feature map 을 볼수 없다. 반면, CONV3, FC6, FC7, FC8 에서 서로 cross 됨으로써 feature map 을 바라볼수 없는 문제를 완화하였다</li></ol><h2 id="2-VGG"><a href="#2-VGG" class="headerlink" title="2. VGG"></a>2. VGG</h2><p>VGG 는 AlexNet 과 비교하여, 조금더 깊은 convnet 을 가지고 있다. 이는 filter size 를 작게 가져감으로써 얻을 수 있는 이익이었다. </p><p>7x7 conv layer 1개와 3x3 conv layer 가 3개를 비교해본다. 7x7 conv layer 1개의 원본 이미지로부터 얻는 receptive field 는 7x7 영역이다. 3개의 3 x 3 conv layer가 쌓였을 때, 3번째 layer 입장에서, 원본이미지의 7 x 7 만큼의 receptive field, 즉 같은 양의 receptive field 를 얻을 수 있다. 같은 receptive field 영역을 커버하지만, layer 의 수가 증가함으로써, 더 많은 <strong>non-linearity feature map</strong>을 얻을 수 있다. 또한, 각 layer 의 parameter 수를 살펴 보면, 7x7 conv layer 는 C(이전 layer 의 channel 수)<em>7</em>7<em>C &#x3D; 49 * C^2만큼의 parameter를 가지고 있고, 3 layer 3x3 conv layer 는 3</em>3<em>3</em>C*C &#x3D; 9 * C^2 만큼의 parameter 를 가지고 있다. 작은 filter size로 layer 수를 늘리는 것이 <strong>parameter 의 갯수</strong> 관점에서도 큰 이득을 가져다 준다.</p><p>cf) 네트워크가 깊어질수록 computation양을 일정하게 유지하기 위해 각 레이어의 입력을 downsampling 한다. &amp; Spatial Area 가 작아질수록 filter 의 depth 를 조금씩 늘려준다.</p><h2 id="3-GoogLeNet"><a href="#3-GoogLeNet" class="headerlink" title="3. GoogLeNet"></a>3. GoogLeNet</h2><h3 id="GoogLeNet-의-특이점"><a href="#GoogLeNet-의-특이점" class="headerlink" title="GoogLeNet 의 특이점"></a>GoogLeNet 의 특이점</h3><p>GoogleNet 은 깊은 신경망 모델에 대해, 계산량의 이점을 가져다주기 위해 고안되었다. 이는 Inception Module 을 설계하여, 이를 연속해 쌓는 방식의 구조이다. Inception Module 의 모양은 다음과 같다.</p><p>다음과 같이 구성할 때, conv layer 를 거친 output 을 depth 방향으로 concatenate 한다. spatial dimension 은 stride 등을 조절한다.</p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-fc505115-1120-4553-895a-ff1017096753.png"></p><p>feature map 을 뽑기 위해 각 layer 의 filter 갯수를 조절할텐데, 효과적인 feature map 을 뽑기 위해 filter 갯수를 늘리게되면, 전체 Inception Module 이 쌓이면 쌓일 수록, parameter 수가 지수배 증가하는 단점이 발생한다. 여기서 GoogleNet 의 핵심 idea가 등장하는 듯 하다.</p><p><strong>1x1 convolution layer!</strong></p><p>1x1 convolution layer를 통해 spatial dimension 은 보존하면서, depth 는 줄인다. 즉 이 convolution layer 를 bottle neck 이 되는 conv layer 앞단에 구성하여, 입력을 더 낮은 차원으로 보낸다.</p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-455ba9e5-8395-41e4-a9d3-c8543af2883e.png"></p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-74d7882d-4001-440f-a9b1-a3198f244dfc.png"></p><p>또한 google net 은 parameter 가 많이 필요한 <strong>fc layer 를 제거</strong>하므로써 computational 이득을 취했다. </p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-699859d1-387d-4936-8a1d-a191fbb5b6ef.png"></p><p>또한 Inception Module 이 쌓이면서, 깊게 쌓일 수록 loss 의 grdient  전파가 소실 되는 효과를 보완하기 위해 추가적인 classifier 를 곁가지에 닮으로써 gradient 를 추가적으로 update 한다.</p><h2 id="4-ResNet"><a href="#4-ResNet" class="headerlink" title="4. ResNet"></a>4. ResNet</h2><p>ResNet 은 conv layer 를 깊게 추가하는 것이 성능에 이득을 주는지에 대한 의문으로 시작한다. 즉, 답은 깊게 쌓는 것이 성능이 좋아지지 않는다는 것이다. </p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-a0f95736-d7c0-4fc8-a918-f420a76b55c4.png"></p><p>위 그림의 test error 그래프를 보더라도, 성능면에서 conv layer 의 증가가 좋은 성능을 가져다 주지 않는 것이 아니다. test error 그래프만 본다면, overfitting 된 것이 아닌가? 라는 생각을 할 수 있으나, training error 그래프를 보면, 학습 조차 잘 되지 않았음을 확인 할 수 있다.</p><p>즉, 깊이가 깊은 모델이 어느 순간부터는 얕은 모델보다 성능이 안좋아 질 수 있는 문제가 발생한다. 이 문제를 degradation 문제라고 한다.</p><h3 id="ResNet-의-특이점"><a href="#ResNet-의-특이점" class="headerlink" title="ResNet 의 특이점"></a>ResNet 의 특이점</h3><p>ResNet의 구조적 특이점은 바로 skip connection 이다. skip connection 은 이렇게, layer 의 입력과 출력이 더해져, 다음 layer 에 대한 입력으로 이루어 지는 구조를 의미한다.기존의 Neural Net 의 구조를 remind 해본다. 기존 뉴럴넷은 입력 x 가 들어갈 때, 출력 y 를 얻기 위한 H(x)를 찾아내는 과정이다. H(x)가 y 에 최대한 가깝게 하기 위한 즉, H(x) - y 가 0 이 될 수 있도록 최소화 과정을 거쳐 H(x) 를 찾아낸다. 이에 반해 ResNet 은 layer 를 거친 F(x) 와 x 가 더해진 F(x) + x 를 H(x)로 보고 이를 H(x) - x 를 최소화한다. 이는 residual 로 볼 수 있는 F(x)를 최소화한다는 의미이다. </p><p><img src="/2019/07/26/CS231n-Lecture09-Summary/Untitled-9906cfd9-51eb-4c7f-a3fe-9cd43b5929b7.png"></p><h2 id="5-Reference"><a href="#5-Reference" class="headerlink" title="5. Reference"></a>5. Reference</h2><p><a href="https://www.youtube.com/watch?v=DAOcjicFr1Y">Lecture 9 | CNN Architectures</a></p><p><a href="http://cs231n.stanford.edu/syllabus.html">Syllabus | CS 231N</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;Lecture-09-CNN-Architectures&quot;&gt;&lt;a href=&quot;#Lecture-09-CNN-Architectures&quot; class=&quot;headerlink&quot; title=&quot;Lecture 09: CNN Architectures&quot;&gt;&lt;/a&gt;Lecture 09: CNN Architectures&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;이 글은, Standford University 의 CS231n 강의를 듣고 스스로 정리 목적을 위해 적은 글입니다.&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Lecture" scheme="https://emjayahn.github.io/categories/Lecture/"/>
-    
-    <category term="CS231n" scheme="https://emjayahn.github.io/categories/Lecture/CS231n/"/>
-    
-    
-    <category term="summary" scheme="https://emjayahn.github.io/tags/summary/"/>
-    
-    <category term="CS231n" scheme="https://emjayahn.github.io/tags/CS231n/"/>
     
   </entry>
   
