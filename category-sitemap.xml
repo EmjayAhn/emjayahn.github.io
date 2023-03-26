@@ -9,6 +9,20 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/categories/Development/Kubernetes/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/categories/Development/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/categories/Paper/</loc>
         <lastmod>2023-03-12T05:35:52.006Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,13 +38,6 @@
 
     <url>
         <loc>https://emjayahn.github.io/categories/Development/Error-Solution/</loc>
-        <lastmod>2022-12-11T16:30:15.433Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://emjayahn.github.io/categories/Development/</loc>
         <lastmod>2022-12-11T16:30:15.433Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

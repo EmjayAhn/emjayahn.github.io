@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/CI-CD/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/Data-Engineering/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/Kubernetes/</loc>
+        <lastmod>2023-03-26T11:59:36.805Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/Look-alike/</loc>
         <lastmod>2023-03-12T05:35:52.006Z</lastmod>
         <changefreq>weekly</changefreq>
