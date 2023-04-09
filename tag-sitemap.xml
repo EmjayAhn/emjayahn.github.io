@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/%EC%8A%A4%ED%81%AC%EB%A6%B0/</loc>
+        <lastmod>2023-04-09T09:00:42.871Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/%EB%A9%80%ED%8B%B0%ED%94%8C%EB%A0%89%EC%84%9C/</loc>
+        <lastmod>2023-04-09T09:00:42.871Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/multiplexer/</loc>
+        <lastmod>2023-04-09T09:00:42.871Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/screen/</loc>
+        <lastmod>2023-04-09T09:00:42.871Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/linux/</loc>
+        <lastmod>2023-04-09T09:00:42.871Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/CI-CD/</loc>
         <lastmod>2023-03-26T11:59:36.805Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -290,13 +325,6 @@
     </url>
 
     <url>
-        <loc>https://emjayahn.github.io/tags/linux/</loc>
-        <lastmod>2022-12-05T08:54:55.763Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://emjayahn.github.io/tags/awk/</loc>
         <lastmod>2021-12-07T14:38:14.939Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -423,14 +451,14 @@
     </url>
 
     <url>
-        <loc>https://emjayahn.github.io/tags/summary/</loc>
+        <loc>https://emjayahn.github.io/tags/CS224n/</loc>
         <lastmod>2019-08-09T13:29:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://emjayahn.github.io/tags/CS224n/</loc>
+        <loc>https://emjayahn.github.io/tags/summary/</loc>
         <lastmod>2019-08-09T13:29:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
