@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/tags/%EC%9B%B9%EC%84%9C%EB%B2%84/</loc>
+        <lastmod>2023-04-23T11:26:23.535Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/API/</loc>
+        <lastmod>2023-04-23T11:26:23.535Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://emjayahn.github.io/tags/FastAPI/</loc>
+        <lastmod>2023-04-23T11:26:23.535Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/tags/%EC%8A%A4%ED%81%AC%EB%A6%B0/</loc>
         <lastmod>2023-04-09T09:04:17.633Z</lastmod>
         <changefreq>weekly</changefreq>
