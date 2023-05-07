@@ -9,8 +9,16 @@
 
 
     <url>
+        <loc>https://emjayahn.github.io/2023/05/07/20230424-fast-api-2/</loc>
+        <lastmod>2023-05-07T12:33:15.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://emjayahn.github.io/2023/04/23/20230423-fast-api-1/</loc>
-        <lastmod>2023-04-23T11:26:23.535Z</lastmod>
+        <lastmod>2023-05-07T12:29:17.535Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
