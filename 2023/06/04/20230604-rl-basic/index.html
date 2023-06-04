@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[Study] Reinforcement Learning Basic - EmjayAhn, DataScienceBook</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="EmjayAhn, DataScienceBook"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="EmjayAhn, DataScienceBook"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Lec1 Intro to RL1. About Reignforcement Learning1.1 다양한 분야에서의 강화학습다양한 분야에서 RL과 같은 혹은 비슷한 개념의 연구와 시도가 계속 되고 있습니다. 여기서 서로 다른 분야라 할지라도 공유되는 핵심 Key Concept은 “Decision Making” 입니다."><meta property="og:type" content="blog"><meta property="og:title" content="[Study] Reinforcement Learning Basic"><meta property="og:url" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/"><meta property="og:site_name" content="EmjayAhn, DataScienceBook"><meta property="og:description" content="Lec1 Intro to RL1. About Reignforcement Learning1.1 다양한 분야에서의 강화학습다양한 분야에서 RL과 같은 혹은 비슷한 개념의 연구와 시도가 계속 되고 있습니다. 여기서 서로 다른 분야라 할지라도 공유되는 핵심 Key Concept은 “Decision Making” 입니다."><meta property="og:locale" content="en_US"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled01.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled02.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled03.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled04.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled05.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled06.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled07.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled08.png"><meta property="og:image" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled09.png"><meta property="article:published_time" content="2023-06-04T06:42:41.000Z"><meta property="article:modified_time" content="2023-06-04T06:48:33.470Z"><meta property="article:author" content="Emjay Ahn"><meta property="article:tag" content="Reinforcement Learning"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://emjayahn.github.io/2023/06/04/20230604-rl-basic/"},"headline":"[Study] Reinforcement Learning Basic","image":["https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled01.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled02.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled03.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled04.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled05.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled06.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled07.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled08.png","https://emjayahn.github.io/2023/06/04/20230604-rl-basic/Untitled09.png"],"datePublished":"2023-06-04T06:42:41.000Z","dateModified":"2023-06-04T06:48:33.470Z","author":{"@type":"Person","name":"Emjay Ahn"},"publisher":{"@type":"Organization","name":"EmjayAhn, DataScienceBook","logo":{"@type":"ImageObject","url":"https://emjayahn.github.io/img/logo3_cut.png"}},"description":"Lec1 Intro to RL1. About Reignforcement Learning1.1 다양한 분야에서의 강화학습다양한 분야에서 RL과 같은 혹은 비슷한 개념의 연구와 시도가 계속 되고 있습니다. 여기서 서로 다른 분야라 할지라도 공유되는 핵심 Key Concept은 “Decision Making” 입니다."}</script><link rel="canonical" href="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-128251719-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-128251719-1');</script><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script data-ad-client="ca-pub-4220998811671882" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="EmjayAhn, DataScienceBook" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="EmjayAhn, DataScienceBook" type="application/rss+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo3_cut.png" alt="EmjayAhn, DataScienceBook" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/emjayahn/"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-06-04T06:42:41.000Z" title="2023. 6. 4. 오후 3:42:41">2023-06-04</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-06-04T06:48:33.470Z" title="2023. 6. 4. 오후 3:48:33">2023-06-04</time></span><span class="level-item"><a class="link-muted" href="/categories/DataScience/">DataScience</a></span><span class="level-item">18 minutes read (About 2772 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">[Study] Reinforcement Learning Basic</h1><div class="content"><h1 id="Lec1-Intro-to-RL"><a href="#Lec1-Intro-to-RL" class="headerlink" title="Lec1 Intro to RL"></a>Lec1 Intro to RL</h1><h2 id="1-About-Reignforcement-Learning"><a href="#1-About-Reignforcement-Learning" class="headerlink" title="1. About Reignforcement Learning"></a>1. About Reignforcement Learning</h2><h3 id="1-1-다양한-분야에서의-강화학습"><a href="#1-1-다양한-분야에서의-강화학습" class="headerlink" title="1.1 다양한 분야에서의 강화학습"></a>1.1 다양한 분야에서의 강화학습</h3><p>다양한 분야에서 RL과 같은 혹은 비슷한 개념의 연구와 시도가 계속 되고 있습니다. 여기서 서로 다른 분야라 할지라도 공유되는 핵심 Key Concept은 “Decision Making” 입니다.</p>
+<span id="more"></span>
+
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled.png" alt="Untitled"></p>
+<h3 id="1-2-강화학습의-특징"><a href="#1-2-강화학습의-특징" class="headerlink" title="1.2 강화학습의 특징"></a>1.2 강화학습의 특징</h3><ul>
+<li>No supervisor, but <strong>reward signal</strong><ul>
+<li>덧붙이자면, 흔히 지도학습(supervised learning)에서는 우리가 제공하는 정답 데이터와 설계한 Loss Function을 이용해 모델에 Feedback을 주지만, 강화학습에서는 정답이라는 데이터를 제공하지 않은채, Agent 의 Action 에 대해 “오구 잘했어 5점”, “그건 좀 별론데? 1점” 과 같이 reward 로 feedback 을 제공합니다.</li>
+</ul>
+</li>
+<li>Delayed Feedback, Not instantaneous<ul>
+<li>Agent 의 지금의 결정(action)이 좋았는지&#x2F;나빴는지가 몇 스텝 후에 나온다는 것이 특징입니다.</li>
+</ul>
+</li>
+<li>Sequential, not i.i.d data<ul>
+<li>(FYI) i.i.d : independent identical distribution (Random Variable 의 독립, 동일 확률분포)</li>
+<li>강화학습의 데이터는 시계열적인(Sequential) 데이터</li>
+</ul>
+</li>
+<li>Agent’s actions affect the subsequent data<ul>
+<li>Agent 의 행동이 reward와 received data 에 영향을 줍니다.</li>
+<li>EX) 로봇이 움직일 때마다 로봇이 보는 화면과 reward가 각각 달라집니다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled01.png" alt="Untitled"></p>
+<h2 id="2-The-Reinforcement-Learning-Problem"><a href="#2-The-Reinforcement-Learning-Problem" class="headerlink" title="2. The Reinforcement Learning Problem"></a>2. The Reinforcement Learning Problem</h2><h3 id="2-1-Rewards"><a href="#2-1-Rewards" class="headerlink" title="2.1 Rewards"></a>2.1 Rewards</h3><ul>
+<li>reward $R_t$ : scalar feedback signal<ul>
+<li>시간 t 에서 agent 의 action (or 선택)이 얼마나 잘 한 것인지 나타내는 피드백 신호</li>
+<li>agent의 목표 : 누적 reward의 최대화 (maximise cumulative reward)</li>
+<li>RL 은 <code>reward hypothesis</code> 위에서 이루어진다</li>
+</ul>
+</li>
+<li>Reward Hypothesis<ul>
+<li>All goals can be described by the maximisation of expected cumulative reward</li>
+<li><strong>모든 목표는 누적 reward의 기댓값을 최대화 하는 것으로 잡을 수 있다.</strong> (아직 구체적으로 느낌은 오지 않음.. 과연 그런가..?)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Sequential-Decision-Making"><a href="#2-2-Sequential-Decision-Making" class="headerlink" title="2.2 Sequential Decision Making"></a>2.2 Sequential Decision Making</h3><ul>
+<li>RL 은 결국 sequential decision making 이라고 표현 될 수 있다.<ul>
+<li>sequential : 매 순간 t 에 대해서</li>
+<li>decision making : agent 의 action 을 선택하는 과정</li>
+</ul>
+</li>
+<li>Agent의 Action 은 그 결과가 즉시 나오지 않을 수 있다. (may have long term consequences)</li>
+<li>Action 에 대한 Reward 역시 즉시 나오지 않을 수 있다. (reward ma be delayed)</li>
+<li>지금, 이순간의 reward를 포기하고, long-term reward를 더 크게 하는 방향의 선택이 좋을 수 잇다.</li>
+<li>(Ex) Financial investment (take months to mature), refuelling a helipcopter (prevent a crash in several hours), blocking opponent moves (help winning chances many moves from now)</li>
+</ul>
+<h3 id="2-3-Agent-and-Environment"><a href="#2-3-Agent-and-Environment" class="headerlink" title="2.3 Agent and Environment"></a>2.3 Agent and Environment</h3><ul>
+<li>‘뇌’로 묘사되는 것이 Agent</li>
+<li>Our Goal: build on agent&#x2F;algorithm<ul>
+<li>Agent decides Action (EX: 모터의  Torque를 어떻게 설정할지, 로봇이 어떻게 움직일지 등)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled02.png" alt="Untitled"></p>
+<ul>
+<li>❗️매 Step t 마다❗️<ol>
+<li>Agent는<ol>
+<li>action $A_t$ 를 수행</li>
+<li>observation $O_t$ 를 받음</li>
+<li>scalar reward $R_t$ 를 받음</li>
+</ol>
+</li>
+<li>Environment는<ol>
+<li>agent 가 수행한 action $A_t$를 받음</li>
+<li>a에 대해 observation $O_{t+1}$ 로 반응</li>
+<li>a에 대해 scalar reward $R_{t+1}$ 로 반응</li>
+</ol>
+</li>
+<li>t + 1로 다음 스텝 증가</li>
+</ol>
+<h3 id="2-4-History-and-State"><a href="#2-4-History-and-State" class="headerlink" title="2.4 History and State"></a>2.4 History and State</h3><ol>
+<li><p>HISTORY</p>
+<ul>
+<li>DEFINITION: observation 과 action, rewards의 sequence</li>
+</ul>
+<p> $$<br> H_{t}&#x3D;O_{1}, R_{1}, A_{1},…, A_{t-1}, O_t, R_t<br> $$</p>
+<ul>
+<li>❓Q❓: 위의 정의에서 보면, $R_{t}, O_{t}$ 의 경우 $A_{t}$에 대한 reaction 입니다. 따라서 Ot, Rt가 나타나기 위에서는 At가 반드시 선행되어야 하는것 같은데, time step t 에서의 history Ht는 At 가 빠져있습니다. 왜일까요? Ot, Rt → At 가 순서이면 make sense 할 것 같습니다만;;</li>
+<li>Next step by current history:<ul>
+<li>agent의 action</li>
+<li>environment 가 observation 과 reward를 결정</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>State</p>
+<ul>
+<li>DEFINITION: 다음 step 에 어떤 것을 할지 정하는 정보</li>
+<li>보통, Function of History</li>
+</ul>
+<p> $$<br> S_{t} &#x3D; f(H_{t})<br> $$</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-5-State"><a href="#2-5-State" class="headerlink" title="2.5 State"></a>2.5 State</h3><ol>
+<li>Environment State: $S_{t}^{e}$<ol>
+<li>David Silver “Information in the environment to determine what happens next”</li>
+<li>Environment’s private representation</li>
+<li>보통 Environment State 는 agent 에게 보이지 않는다</li>
+<li>Environment State 가 agent 에게 보인다 할지라도, irrelevant information 일 가능성이 크다</li>
+</ol>
+</li>
+<li>Agent State: $S_{t}^{a}$<ol>
+<li>$S_{t}^{a} &#x3D; f(H_t)$ : Funtion of History</li>
+<li>RL algorithm에서 사용될 agent에 관한 정보</li>
+</ol>
+</li>
+<li>Information State (&#x3D;aka Markov State)<ol>
+<li><p>History 로부터 얻게되는 모든 유용한 정보</p>
+</li>
+<li><p>A state $S_{t}$ is Markov:</p>
+<p> Definition: </p>
+<p> $$<br> P[S_{t+1}|S_{t}] &#x3D; P[S_{t+1}|S_1, …, S_{t}]<br> $$</p>
+</li>
+<li><p>Markov Property의 핵심은 </p>
+<ul>
+<li>“미래의 State 는 현재 State에만 영향을 받는다”</li>
+<li>“미래의 State 는 과거 모든 State에 대해 독립적이다”</li>
+<li>Store ONLY current State (현재의 State가 이전의 history 정보를 담고 있으므로. RL 과 memory, Dynamic Programming 과의 연관성을 intuitively 이해할 수 있음)</li>
+<li>헬리콥터 예제) 헬리콥터가 지금 바람을 맞을 때, 10분전 헬리콥터가 어떤 velocity 와 어떤 position 에 있었는지 중요하지 않다</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="2-6-Fully-Observable-Environments-amp-Partially-Observable-Environments"><a href="#2-6-Fully-Observable-Environments-amp-Partially-Observable-Environments" class="headerlink" title="2.6 Fully Observable Environments &amp; Partially Observable Environments"></a>2.6 Fully Observable Environments &amp; Partially Observable Environments</h3><ol>
+<li><p>Full observability : agent 가 directly environment state를 확인 할 수 있는 환경</p>
+<ul>
+<li>environment state &#x3D; agent state &#x3D; information state</li>
+</ul>
+<p> $$<br> O_t&#x3D;S_{t}^{a}&#x3D;S_{t}^{e}<br> $$</p>
+<ul>
+<li>보통 위 state 들은 Markov Decision Procee (MDP)</li>
+</ul>
+</li>
+<li><p>Partial Observability : agent가 indirectly environment state 를 확인 할 수 있는 환경</p>
+<ul>
+<li>agent ≠ environment state</li>
+<li>보통 이를, Partially observable Markov Decision Process (POMDP) 라고 한다.</li>
+<li>이 경우, agent 는 자신의 state representation $S_t^{a}$ 를 정해야한다. 다음은 경우에 따라 $S_t^{a}$를 정하는 방식이다.<ul>
+<li>Complete History 의 경우 : $S_t^{a}&#x3D;H_t$</li>
+<li>Beliefs of environment state (Baysian Approach) : $S_t^{a} &#x3D; (P[S_t^{e}]&#x3D;s^1, …, P[S_t^{e}]&#x3D;s^n)$ - Vector Probability에 의해 agent 의 next step 이 결정된다</li>
+<li>Recurrent Neural Network (Probability를 사용하지 않고, 단지 agent에 숫자만 넣어주면 된다는 생각으로 network를 사용할 수 도 있다.) : $S_t^{a} &#x3D; \sigma(S_{t-1}^{a}W_{s}+O_{t}W_{o})$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>MDP 와 POMDP 를 추후에 본 강의에서 다룰 수도 있겠지만, 그 내용의 중요도와 본 수업의 진행 방식에 따라 아래 강의도 함께 진행해도 좋을 것 같습니다. </p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=uHEjez97BvE">https://www.youtube.com/watch?v=uHEjez97BvE</a></p>
+<h2 id="3-Inside-an-RL-Agent"><a href="#3-Inside-an-RL-Agent" class="headerlink" title="3. Inside an RL Agent"></a>3. Inside an RL Agent</h2><h3 id="3-1-Major-Components-of-an-RL-Agent"><a href="#3-1-Major-Components-of-an-RL-Agent" class="headerlink" title="3.1 Major Components of an RL Agent"></a>3.1 Major Components of an RL Agent</h3><ol>
+<li>Policy : Agent의 행동함수(behavior function)</li>
+<li>Value function : 각 state 와 action 이 얼마나 좋은지 나타내는 함수 (how much reward do we expect to get)</li>
+<li>Model : Agent 관점에서 바라보는 environment (agent’s representation)</li>
+</ol>
+<ul>
+<li>위 세가지가 항상 모두 필요한 것은 아닙니다. 경우에 따라, 필요에 따라 구성하게 됩니다.</li>
+</ul>
+<h3 id="3-2-Policy"><a href="#3-2-Policy" class="headerlink" title="3.2 Policy"></a>3.2 Policy</h3><ul>
+<li>Policy : Agent의 행동함수</li>
+<li>Map from state to action</li>
+<li>Policy 의 종류<ol>
+<li>Deterministic Policy: $a &#x3D; \pi(s)$ - argmax</li>
+<li>Stochastic Policy: $\pi(a|s) &#x3D; P[A_{t}&#x3D;a|S_{t}&#x3D;s]$</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-3-Value-Function"><a href="#3-3-Value-Function" class="headerlink" title="3.3 Value Function"></a>3.3 Value Function</h3><ul>
+<li>Value Function : Prediction of future Reward</li>
+<li>State 1 or 2 &#x2F; Action 1 or 2 를 선택할 때의 기준이 됩니다.</li>
+<li>$v_{\pi}(s)&#x3D;E_{\pi}[R_{t+1}+\gamma R_{t+2}+\gamma^{2}R_{t+3}+…|S_{t}&#x3D;s]$ ($\gamma$: discount factor - 더 먼 미래의 예측 reward 효과를 감소시키기 위함)</li>
+</ul>
+<h3 id="3-4-Model"><a href="#3-4-Model" class="headerlink" title="3.4 Model"></a>3.4 Model</h3><ul>
+<li><p>Model : Environment 의 행동을 예측 (Agent 의 관점에서의 행동방식이지, 실제 environment 의 행동방식이 아님)</p>
+</li>
+<li><p>Transition Model $P$  :  $P$ predicts the next <strong>state</strong></p>
+<p>  $$<br>  P_{ss’}^{a} &#x3D; P[S_{t+1}&#x3D;s’|S_t&#x3D;s, A_t&#x3D;a]<br>  $$</p>
+</li>
+<li><p>Reward Model $R$ : $R$ predicts the next (immediate) <strong>reward</strong></p>
+</li>
+</ul>
+<p>$$<br>R_s^{a}&#x3D;E[R_{t+1}|S_t&#x3D;s, A_t&#x3D;a]<br>$$</p>
+<p>(Q) Trasition Model의 경우, Agent 관점에서 (Environment? ) state 를 예측 하는 것이라면, Policy 와의 역할 차이는 무엇일까? Policy와 Value Function 을 통해 agent 의 action 이 결정되고, 결정된 현재 action 에 의해 다음 state가 결정된다. 이렇게 볼때 Transition Model 과 Agent 간의 연결고리? TransitionModel과 Policy 간의 관계가 어떻게 되는지? Reward Model 도 마찬가지.</p>
+<h3 id="3-5-Maze-Example"><a href="#3-5-Maze-Example" class="headerlink" title="3.5 Maze Example"></a>3.5 Maze Example</h3><ol>
+<li>Policy <ol>
+<li>아래 그림에서, 화살표→를 Policy라 생각할 수 있습니다.</li>
+<li>⬜️  를 state 라 생각할 수 있습니다.</li>
+<li>Agent 가 특정 ⬜️  에 도착했을 때, → 를 따라 이동하는 것이 Action 이라 생각할 수 있습니다.</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled03.png" alt="Untitled"></p>
+<ol>
+<li>Value Function<ol>
+<li>아래 그림은, 각 state 마다 value function 값을 적어놓은 것입니다.</li>
+<li>특정 ⬜️  , 즉 state 에 도착했을 때, 다음 state(다음 action)을 결정 짓는 기준이 됩니다.</li>
+<li>$v_{\pi}(s)$</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled04.png" alt="Untitled"></p>
+<ol>
+<li>Model<ol>
+<li>Agent가 Modeling 한 immediate reward (실제 environment 가 아님)</li>
+<li>Dynamics : Action이 State 를 어떻게 변화 시키는지 (Q) 갑자기 어디서 튀어나온 terminology이죠? 강의 부분에서도 크게 언급을 안하였는데 Definition 처럼 표기를 해놨네요. Model 은 두가지라며…</li>
+<li>Rewards : 각 state마다 얼만큼의 reward 를 받는지</li>
+<li>** The Model may be IMPERFECT</li>
+<li>Grid Layout : Transition Model $P_{ss’}^{a}$</li>
+<li>Numbers : Reward Model $R_s^{a}$</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled05.png" alt="Untitled"></p>
+<h3 id="3-6-Categorizing-RL-agents"><a href="#3-6-Categorizing-RL-agents" class="headerlink" title="3.6 Categorizing RL agents"></a>3.6 Categorizing RL agents</h3><p>[Category 1] : RL Components(RL 구성요소) 중 Policy 와 Value의 저장 여부에 따라 다음과 같이 나뉩니다.</p>
+<ol>
+<li>Value Based<ol>
+<li>No Policy </li>
+<li>Stores only Value Function</li>
+</ol>
+</li>
+<li>Policy Based<ol>
+<li>Stores only Policy</li>
+<li>No Value Function</li>
+</ol>
+</li>
+<li>Actor Critic : Will cover Soon<ol>
+<li>Stores both Policy and</li>
+<li>Value Function</li>
+</ol>
+</li>
+</ol>
+<p>[Category 2] : RL Components(RL 구성요소) 중 Model의 유무에 따라 다음과 같이 나뉩니다.</p>
+<ol>
+<li>Model Free<ol>
+<li>Policy and&#x2F;or Value Function 의 유무는 크게 중요하지 않으나 (어느 하나라도 있으면 됨),</li>
+<li>No Model</li>
+</ol>
+</li>
+<li>Model Based<ol>
+<li>Policy and&#x2F;or Value Function의 유무는 크게 중요하지 않으나 (어느 하나라도 있으면 됨),</li>
+<li>Model</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled06.png" alt="Untitled"></p>
+<h2 id="4-Problems-within-Reinforcement-Learning"><a href="#4-Problems-within-Reinforcement-Learning" class="headerlink" title="4. Problems within Reinforcement Learning"></a>4. Problems within Reinforcement Learning</h2><h3 id="4-1-Reinforcement-Learning-Problem-amp-Plannning-Problem"><a href="#4-1-Reinforcement-Learning-Problem-amp-Plannning-Problem" class="headerlink" title="4.1  Reinforcement Learning Problem &amp; Plannning Problem"></a>4.1  Reinforcement Learning Problem &amp; Plannning Problem</h3><ul>
+<li>Sequential Decision Making에서 2가지 Fundamental Problem이 있습니다.</li>
+</ul>
+<ol>
+<li>Reinforcement Learning Problem<ol>
+<li>Environment 에 대해 알지 못함 (Agent 는 아무것도 모른채 그냥 던져짐)</li>
+<li>Agent 가 environment 와 상호작용을 함</li>
+<li>이를 통해, Agent가 자신의 Policy를 발전시킴</li>
+</ol>
+</li>
+<li>Planning Problem<ol>
+<li>Environment 의 Model 을 알고 있음 ( Agent 가 이 model 을 보고, Environment 에 대한 정보를 가지고 던져짐)</li>
+<li>Agent 는 위 Model 에 대해 computation 을 수행함 (그 어떤 다른 상호작용을 하지 않은채)</li>
+<li>이를 통해, Agent가 자신의 Policy 를 발전시킴</li>
+<li>aka deliberation (deliberative RL을 검색하니, 같은 hierarchy에 behavior-based architecture(행위 기반 에이전트구조), deliberative agent architecture(숙고형 에이전트 구조), hybrid agent architecture(혼합형 에이전트 구조)가 있으나, deliberation 이 어떤 것인지는 잘 모르겠습니다.) , reasoning, introspection, pondering, thought, search</li>
+</ol>
+</li>
+</ol>
+<p>Atari Game 에서 Reinforcement Learning Problem 으로 바라볼 때,</p>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled07.png" alt="Untitled"></p>
+<p>Atari Game 에서 Planning Problem 으로 바라볼 때, </p>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled08.png" alt="Untitled"></p>
+<ul>
+<li><p>RL Problem  은 Agent의 Policy dependency 가 높다</p>
+<p>  → Model 을 의식하지 않고, Agent를 발전시키는 방향</p>
+</li>
+<li><p>Planning Problem 은 Model dependency 가 높다</p>
+<p>  → Model을 발전시키는 방향</p>
+</li>
+<li><p>결국 여기서, 얻을 수 있는 것은 같은 문제라 할지라도 우리가 문제정의를 어떻게 하느냐에 따라 Reinforcement Learning 연장을 사용할 때도 다양하게 해석되고, 다양한 문제 해결방식이 있는 것 같습니다.</p>
+</li>
+</ul>
+<h3 id="4-2-Exploration-amp-Exploitation"><a href="#4-2-Exploration-amp-Exploitation" class="headerlink" title="4.2 Exploration &amp; Exploitation"></a>4.2 Exploration &amp; Exploitation</h3><ul>
+<li>결국, RL 은 trial-and-error learning 입니다.</li>
+<li>The agent 는 environment 에 대한 경험을 통해, Good Policy 를 찾고 발전시켜야합니다.</li>
+<li>이 때의 제약 조건은 너무 오래 걸리지 않는 시간과 reward step이겠습니다.</li>
+</ul>
+<ol>
+<li>Exploration : finds more information about the environment<ol>
+<li>Environment 에 관해 아무것도 알지 못하므로, environment 를 파악하기 위한 정보를 수집합니다.</li>
+</ol>
+</li>
+<li>Exploitation : exploits known information to maximise reward<ol>
+<li>이미 알고 있는 정보 (Environment 에 관한 정보)를 바탕으로 reward를 최대화합니다.</li>
+</ol>
+</li>
+</ol>
+<p>아래 사진은 각 문제에 대해 Exploitation 관점과 Exploration 관점으로 살펴보았을 때의 그 문제 해결 방법이 달라지는 예시입니다.</p>
+<p><img src="/2023/06/04/20230604-rl-basic/Untitled09.png" alt="Untitled"></p>
+<h3 id="4-3-Prediction-and-Control"><a href="#4-3-Prediction-and-Control" class="headerlink" title="4.3 Prediction and Control"></a>4.3 Prediction and Control</h3><ul>
+<li>Prediction : Evaluate the future<ul>
+<li>Given a policy</li>
+</ul>
+</li>
+<li>Control : Optimise the future<ul>
+<li>Find the best policy</li>
+</ul>
+</li>
+<li>Agent 를 비롯한 RL system은 결국 Prediction 에서 Control 방향으로 넘어가는 개발단계를 취할 수 있습니다.</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>[Study] Reinforcement Learning Basic</p><p><a href="https://emjayahn.github.io/2023/06/04/20230604-rl-basic/">https://emjayahn.github.io/2023/06/04/20230604-rl-basic/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Emjay Ahn</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2023-06-04</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-06-04</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Reinforcement-Learning/">Reinforcement Learning</a></div><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d2ca2d817ca3533" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="https://buymeacoffee.com/cHgDES9Ut" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/05/21/20230521-markov/"><span class="level-item">[Study] Markov Decision Process</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://emjayahn.github.io/2023/06/04/20230604-rl-basic/';
+            this.page.identifier = '2023/06/04/20230604-rl-basic/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'emjay-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/emjayahn_avatar.jpeg" alt="Logging My Days"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Logging My Days</p><p class="is-size-6 is-block">Emjay Ahn</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, Korea</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">102</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">37</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">86</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/emjayahn" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/emjayahn"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com/jjminjae"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://linkedin.com/in/minjae-ahn-19747718a/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">LinkedIn</span></span><span class="level-right"><span class="level-item tag">linkedin.com</span></span></a></li><li><a class="level is-mobile" href="https://instagram.com/emjay.data_science/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Instagram</span></span><span class="level-right"><span class="level-item tag">instagram.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Book/"><span class="level-start"><span class="level-item">Book</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/Book/Digital-Image-Processing/"><span class="level-start"><span class="level-item">Digital Image Processing</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/DataScience/"><span class="level-start"><span class="level-item">DataScience</span></span><span class="level-end"><span class="level-item tag">4</span></span></a><ul><li><a class="level is-mobile" href="/categories/DataScience/Regression/"><span class="level-start"><span class="level-item">Regression</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/DataScience/Seminar/"><span class="level-start"><span class="level-item">Seminar</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/DataStructure/"><span class="level-start"><span class="level-item">DataStructure</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/"><span class="level-start"><span class="level-item">Development</span></span><span class="level-end"><span class="level-item tag">15</span></span></a><ul><li><a class="level is-mobile" href="/categories/Development/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Docker/"><span class="level-start"><span class="level-item">Docker</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Error-Solution/"><span class="level-start"><span class="level-item">Error&amp;Solution</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/FastAPI/"><span class="level-start"><span class="level-item">FastAPI</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Kubernetes/"><span class="level-start"><span class="level-item">Kubernetes</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Linux/"><span class="level-start"><span class="level-item">Linux</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Development/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Diary/"><span class="level-start"><span class="level-item">Diary</span></span><span class="level-end"><span class="level-item tag">43</span></span></a></li><li><a class="level is-mobile" href="/categories/Google-Cloud-Platform/"><span class="level-start"><span class="level-item">Google Cloud Platform</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/"><span class="level-start"><span class="level-item">Lecture</span></span><span class="level-end"><span class="level-item tag">10</span></span></a><ul><li><a class="level is-mobile" href="/categories/Lecture/CS224n/"><span class="level-start"><span class="level-item">CS224n</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/CS231n/"><span class="level-start"><span class="level-item">CS231n</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/Lecture/%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%AC/"><span class="level-start"><span class="level-item">딥러닝을 이용한 자연어 처리</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/MachineLearning/"><span class="level-start"><span class="level-item">MachineLearning</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/MachineLearning/Apache-Spark/"><span class="level-start"><span class="level-item">Apache Spark</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/MachineLearning/Pytorch/"><span class="level-start"><span class="level-item">Pytorch</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/MachineLearning/Vision/"><span class="level-start"><span class="level-item">Vision</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Math/"><span class="level-start"><span class="level-item">Math</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Paper/"><span class="level-start"><span class="level-item">Paper</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/"><span class="level-start"><span class="level-item">wiki</span></span><span class="level-end"><span class="level-item tag">9</span></span></a><ul><li><a class="level is-mobile" href="/categories/wiki/MySQL/"><span class="level-start"><span class="level-item">MySQL</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/NGINX/"><span class="level-start"><span class="level-item">NGINX</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Pillow/"><span class="level-start"><span class="level-item">Pillow</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Provision/"><span class="level-start"><span class="level-item">Provision</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Requests/"><span class="level-start"><span class="level-item">Requests</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Scrapy/"><span class="level-start"><span class="level-item">Scrapy</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Selenium/"><span class="level-start"><span class="level-item">Selenium</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/wiki/Xpath/"><span class="level-start"><span class="level-item">Xpath</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%EA%B8%80%EB%98%90/"><span class="level-start"><span class="level-item">글또</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-06-04T06:42:41.000Z">2023-06-04</time></p><p class="title"><a href="/2023/06/04/20230604-rl-basic/">[Study] Reinforcement Learning Basic</a></p><p class="categories"><a href="/categories/DataScience/">DataScience</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-21T11:08:39.000Z">2023-05-21</time></p><p class="title"><a href="/2023/05/21/20230521-markov/">[Study] Markov Decision Process</a></p><p class="categories"><a href="/categories/DataScience/">DataScience</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-07T12:29:05.000Z">2023-05-07</time></p><p class="title"><a href="/2023/05/07/20230424-fast-api-2/">[FastAPI] FastAPI 입문 part2 - CRUD 어플리케이션 만들기</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/FastAPI/">FastAPI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-23T11:22:56.000Z">2023-04-23</time></p><p class="title"><a href="/2023/04/23/20230423-fast-api-1/">[FastAPI] FastAPI 입문 part1 - 설치/라우팅</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/FastAPI/">FastAPI</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-09T08:58:57.000Z">2023-04-09</time></p><p class="title"><a href="/2023/04/09/20230409-screen-basic/">[Linux] screen을 사용해보자</a></p><p class="categories"><a href="/categories/Development/">Development</a> / <a href="/categories/Development/Linux/">Linux</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/06/"><span class="level-start"><span class="level-item">June 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">May 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/04/"><span class="level-start"><span class="level-item">April 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/03/"><span class="level-start"><span class="level-item">March 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/02/"><span class="level-start"><span class="level-item">February 2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/01/"><span class="level-start"><span class="level-item">January 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/12/"><span class="level-start"><span class="level-item">December 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">February 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">December 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">November 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">October 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">September 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">August 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/07/"><span class="level-start"><span class="level-item">July 2019</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">June 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">May 2019</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">January 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">December 2018</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">November 2018</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">October 2018</span></span><span class="level-end"><span class="level-item tag">20</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/API/"><span class="tag">API</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CI-CD/"><span class="tag">CI/CD</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS224n/"><span class="tag">CS224n</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CS231n/"><span class="tag">CS231n</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Classification/"><span class="tag">Classification</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Crawling-Web-Requests/"><span class="tag">Crawling, Web, Requests</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data/"><span class="tag">Data</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data-Engineering/"><span class="tag">Data Engineering</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DataAnalysis/"><span class="tag">DataAnalysis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DataScience/"><span class="tag">DataScience</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/FastAPI/"><span class="tag">FastAPI</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Gan/"><span class="tag">Gan</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Generative/"><span class="tag">Generative</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Google-Cloud-Platform/"><span class="tag">Google Cloud Platform</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kubernetes/"><span class="tag">Kubernetes</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Language/"><span class="tag">Language</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Look-alike/"><span class="tag">Look-alike</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Markov/"><span class="tag">Markov</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Markov-Decision-Process/"><span class="tag">Markov Decision Process</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Reinforcement-Learning/"><span class="tag">Reinforcement Learning</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Seminar/"><span class="tag">Seminar</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TWIL/"><span class="tag">TWIL</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Thread/"><span class="tag">Thread</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vanilla-Gan/"><span class="tag">Vanilla Gan</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/awk/"><span class="tag">awk</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/commandlinetools/"><span class="tag">commandlinetools</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/crawling/"><span class="tag">crawling</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/crontab/"><span class="tag">crontab</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/database/"><span class="tag">database</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/datastructure/"><span class="tag">datastructure</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/decorator/"><span class="tag">decorator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/development/"><span class="tag">development</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/error/"><span class="tag">error</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterable/"><span class="tag">iterable</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/lightgbm/"><span class="tag">lightgbm</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/machine-learning/"><span class="tag">machine learning</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/multiplexer/"><span class="tag">multiplexer</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mysql/"><span class="tag">mysql</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nginx/"><span class="tag">nginx</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/paper/"><span class="tag">paper</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pillow-Pillow-image/"><span class="tag">pillow, Pillow, image</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/proxy/"><span class="tag">proxy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/python/"><span class="tag">python</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rdbms/"><span class="tag">rdbms</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scrapy/"><span class="tag">scrapy</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/screen/"><span class="tag">screen</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/selenium/"><span class="tag">selenium</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setting/"><span class="tag">setting</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/solution/"><span class="tag">solution</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/stack/"><span class="tag">stack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/summary/"><span class="tag">summary</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webdriver/"><span class="tag">webdriver</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/xcrun/"><span class="tag">xcrun</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD/"><span class="tag">개발환경</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EA%B8%80%EB%98%90/"><span class="tag">글또</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%85%BC%EB%AC%B8/"><span class="tag">논문</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0/"><span class="tag">논문리뷰</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">데코레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%8F%84%EC%BB%A4/"><span class="tag">도커</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%A6%AC%EB%88%85%EC%8A%A4/"><span class="tag">리눅스</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%A9%80%ED%8B%B0%ED%94%8C%EB%A0%89%EC%84%9C/"><span class="tag">멀티플렉서</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%AA%A9%ED%91%9C/"><span class="tag">목표</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EB%B6%84%EB%A5%98%EB%AA%A8%EB%8D%B8/"><span class="tag">분류모델</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%83%9D%EC%84%B1%EB%AA%A8%ED%98%95/"><span class="tag">생성모형</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%8A%A4%ED%81%AC%EB%A6%B0/"><span class="tag">스크린</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9B%B9%EC%84%9C%EB%B2%84/"><span class="tag">웹서버</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94/"><span class="tag">이터러블</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">이터레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%9E%90%EB%8F%99%ED%99%94/"><span class="tag">자동화</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%A0%9C%EB%84%88%EB%A0%88%EC%9D%B4%ED%84%B0/"><span class="tag">제너레이터</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%A7%80%EC%9B%90%EC%84%9C/"><span class="tag">지원서</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/"><span class="tag">추천시스템</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/"><span class="tag">쿠버네티스</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%ED%81%AC%EB%A1%A0%ED%83%AD/"><span class="tag">크론탭</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%ED%99%95%EB%A5%A0%EB%A1%A0%EC%A0%81%EC%83%9D%EC%84%B1%EB%AA%A8%ED%98%95/"><span class="tag">확률론적생성모형</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95/"><span class="tag">환경설정</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%ED%9A%8C%EA%B3%A0/"><span class="tag">회고</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=iilw5vx4ri7&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="iilw5vx4ri7" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div><p class="help">Subscribe to get the latest update!</p></form></div></div></div><div class="card widget" data-type="adsense"><div class="card-content"><div class="menu"><h3 class="menu-label">Advertisement</h3><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4220998811671882" data-ad-slot="8686291800" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo3_cut.png" alt="EmjayAhn, DataScienceBook" height="28"></a><p class="is-size-7"><span>&copy; 2023 Emjay Ahn</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/emjayahn"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
