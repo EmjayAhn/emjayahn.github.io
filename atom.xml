@@ -9,8 +9,39 @@
     <atom:link href="https://emjayahn.github.io/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 02 Jul 2023 09:55:34 GMT</pubDate>
+    <pubDate>Wed, 19 Mar 2025 12:16:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DeepSeekMoE 요약</title>
+      <link>https://emjayahn.github.io/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/</link>
+      <guid>https://emjayahn.github.io/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/</guid>
+      <pubDate>Wed, 19 Mar 2025 12:05:59 GMT</pubDate>
+      
+      <description>&lt;p&gt;논문 DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>논문 DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.</p><span id="more"></span><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><h3 id="문제-정의"><a href="#문제-정의" class="headerlink" title="문제 정의"></a>문제 정의</h3><ul><li>최근 LLM이 발전하면서 더 많은 파라미터를 활용할 수록 성능이 향상 → but, 그에따른 연산 비용 급격히 증가 → 이를 해결하기 위해 Mixture-of-Experts (MoE) 아키텍처 등장</li><li>MoE: 여러 개의 <strong>전문가 모델 (Experts)</strong> 을 두고, 입력 데이터에 따라 일부 전문가만 활성화하여 계산하는 방식<ul><li>이 방식은 전체 모델 크기는 증가할 수는 있으나,</li><li>한 번의 inference에서 사용되는 연산량을 줄일 수 있다.</li></ul></li><li>기존의 대표적인 MoE 아키텍처 GShard(구글) 방식은 다음과 같은 문제점이 있다.<ul><li>Spicialization 문제 : GShard에서는 N개의 전문가(Experts) 중 K개를 선택 (Top-K Routing)하여 활성화하지만, 특정 Expert 들이 중복된 지식을 학습하는 문제가 있을 수 있고, 각각의 Expert가 전문화(specialization)되지 않는 문제가 발생할 수 있음</li><li>즉, 모델이 각 전문가를 “고유한, 특별한 역할”을 가진 전문가로 만들지 못하고 일부 전문가가 과하게 중복된 역할을 수행하는 비효율성이 있다.</li></ul></li></ul><h3 id="Key-Idea"><a href="#Key-Idea" class="headerlink" title="Key Idea"></a>Key Idea</h3><ul><li>본 논문에서는 DeepSeekMoE라는 새로운 MoE 구조를 제안</li><li>목표는 각 Expert를 Specialization을 극대화하기 위함<ul><li>두 가지 핵심 전략 소개</li></ul><ol><li>Expert Segmenting(전문가 세분화) 및 Activation 방식 개선<ul><li>기존 GShard는 N개의 전문가 중 K 개만 선택하는 방식이었으나,</li><li>DeepSeekMoE에서는 각 전문가를 더 작은 단위로 세분화 ($mN$개 전문가)하여, $mK$개의 전문가를 Activate 하는 방식을 사용</li><li>이를 통해 더 다양한 조합의 Expert들을 활성화할 수 있으며, Expert간의 Knowledge 중복을 줄이고, 유연한 조합이 가능</li></ul></li><li>Shared Experts (공유 전문가(?)) 도입<ul><li>일부 Expert ($K_{s}$)를 Shared Experts로 따로 분리</li><li>이 Shared Expert는 일반 상식, 지식 (Common Knowledge) 학습</li><li>나머지 Expert들은 특정한 역할을 수행하는 것으로 특화</li></ul></li></ol></li><li>이렇게 함으로써 각 전문가가 중복 없이 고유한 정보를 학습할 수 있으며, 동시에 일반 상식은 Shared Expert가 담당하므로 불필요한 중복 연산을 줄일 수 있다.</li></ul><h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h3><ul><li>DeepSeekMoE의 효과성을 검증하기 위해, 기존 모델들과 성능 비교</li></ul><ol><li>2B 크기<ul><li>DeepSeekMoE 2B와 기존 Gshard 2.9B와 비교하여 1.5배 적은 Expert parameter와 연산량을 사용하면서도 동일한 성능을 보임</li></ul></li><li>16B 크기<ul><li>DeepSeekMoE 16B는 기존의 llama2 7B와 비슷한 성능, but 40% 정도의 연산량만 사용</li><li>더 적은 연산량으로도 동일한 성능을 유지할 수 있음을 보임</li></ul></li><li>145B 크기<ul><li>DeepSeekMoE 145B는 Gshard 보다 우수한 성능, DeepSeek 67B 모델과 비교해서 비슷한 성능, but 연산량은 DeepSeek 67Bdml 28.5%(혹은 최소 18.2%)만 사용</li><li>마찬가지로 기존 방식 대비 연산량을 대폭 줄이면서도 높은 성능을 유지할 수 있음을 보임</li></ul></li></ol><h2 id="Preliminaries-트랜스포머의-MoE"><a href="#Preliminaries-트랜스포머의-MoE" class="headerlink" title="Preliminaries: 트랜스포머의 MoE"></a>Preliminaries: 트랜스포머의 MoE</h2><ul><li><p>트랜스포머 기반의 언어 모델은 기본적으로 $L$개의 standard transformer 블록을 쌓아서 구성된다. 각 블록은 다음과 같이 표현될 수 있다.<br>$$<br>u_{1:T}^{l} &#x3D; Self-Att(h_{1:T}^{l-1}) + h_{1:T}^{l-1}<br>$$<br>$$<br>h_{t}^{l} &#x3D; FFN(u_{t}^{l})+u_{t’}^{l}<br>$$</p></li><li><p>위 식에서 $T$는 시퀀스 길이</p></li><li><p>$Slef-Att$ : 셀프 어텐션 모듈</p></li><li><p>$FFN(\cdot)$ : feed forward network</p></li><li><p>$u_{1:T}^{l} \in R^{T \times d}$ 는 $l$ 번째 어텐션 모듈을 거친 후의 모든 토큰의 hidden state</p></li><li><p>$h_{t}^{l} \in R^{d}$ 는 $l$ 번째 트랜스포머 블록을 통과한 후 $l$ 번째 토큰의 출력 hidden state</p></li><li><p>수식에서 Layer Normalization은 생략</p></li><li><p>MoE 언어 모델을 구성하는 일반적인 방법은 트랜스포머 내에서 특정 간격마다 $FFN$ 을 MoE 레이어로 대체하는 것</p></li><li><p>MoE 레이어는 여러 Experts로 구성되며, 각 Expert는 구조적으로 Feed Forward Network와 동일한 형태를 갖는다.</p><ul><li>이후 각 토큰은 하나의 Expert에 할당 될 수도 있고, </li><li>두 개의 Expert에 할당될 수도 있다.</li></ul></li><li><p>만약 $l$번째 FFN 이 MoE레이어로 대체된다면, 해당 레이어에서의 output hidden state $h_{t}^{l}$ 은 다음과 같으 계산됨<br>$$<br>h_{t}^{l} &#x3D; \Sigma_{i&#x3D;1}^{N}(g_{i, t}FFN_{i}(u_{t}^{l})) + u_{t}^{l}<br>$$<br>이 식을 추가적으로 설명하면 각 Expert $FFN_{i}$ 가 입력 $u_{t}^{l}$을 입력 받아 가중치 g와 곱해서 더한다.  입력 ut와 더하는 것은 residual connection (잔차 연결)로 볼 수 있음<br>$$<br>g_{i,t} &#x3D; s_{i, t} \quad or \quad 0 \quad where \quad s_{i, t} \in Topk(&lt;!–swig￼0–&gt;e_{i}^{l})<br>$$<br>각 Expert에 대한 가중치 $s_{i, t}$ 값은 Softmax로 계산됨.</p></li></ul><p><img src="/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/deepseek.png"><br>그림 (a)는 Top-2 Routing 하는 moe 레이어<br>그림 (b)는 Fine-grained expert segmentation 전략<br>그림 (c)는 shared expert isolation 전략, DeepSeekMoE 아키텍처</p><h2 id="DeepSeekMoE-아키텍처"><a href="#DeepSeekMoE-아키텍처" class="headerlink" title="DeepSeekMoE 아키텍처"></a>DeepSeekMoE 아키텍처</h2><ul><li>DeepSeekMoE는 2가지를 제시<ul><li>Fine-grained Expert Segmentation (세분화된 expert 분할)</li><li>Shared Expert Isolation (공유 전문가 분리)</li></ul></li><li>이 두가지 전략 모두 각각의 Expert의 전문성을 더욱 강화하는 것을 목표로 함</li></ul><h3 id="Fine-Grained-Expert-Segmentation"><a href="#Fine-Grained-Expert-Segmentation" class="headerlink" title="Fine-Grained Expert Segmentation"></a>Fine-Grained Expert Segmentation</h3><ul><li>기존 MoE 구조에서 전문가의 수가 제한적이면, 각 전문가에게 할당된 토큰들이 다양한 종류의 지식(Knowledge)을 포함할 가능성이 높아짐</li><li>결과적으로, 하나의 전문가가 <strong>너무 많은 종류의 지식을 학습해야 하며</strong>, 이러한 지식들은 동시에 효과적으로 활용되기가 어려움</li><li>이를 해결하기 위해 각 토큰이 더 많은 전문가에게 라우팅될 수 있다면, 각 전문가가 더 세분화된 특정 지식만을 학습할 수 있도록 조정할 수 있음</li><li>이렇게 하면 전문가가 <strong>더욱 집중된(특화된) 지식을 학습할 수 있으며</strong>, 결과적으로 <strong>각 전문가 간의 역할이 더욱 명확하게 분배</strong></li></ul><p>구체적으로, 기존 MoE 아키텍처(그림 (a))에서 <strong>각 전문가의 FFN을 𝑚개의 더 작은 전문가로 분할</strong>한다.<br>이때, 각 전문가의 FFN의 중간(hidden) 차원을 원래 크기의 $\frac{1}{m}$로 줄인다. 각 전문가가 작아진 만큼, 활성화되는 전문가의 수를 $𝑚$배 증가시켜, 전체 연산 비용을 <strong>동일하게 유지</strong>할 수 있도록 조정합니다 (그림 (b)).</p><h3 id="Shared-Expert-Isolation"><a href="#Shared-Expert-Isolation" class="headerlink" title="Shared Expert Isolation"></a>Shared Expert Isolation</h3><ul><li>기존의 라우팅 전략에서는, 서로 다른 전문가에게 할당된 토큰들이 공통적인 지식이나 정보를 필요로 할 수 있음. 그 결과, 여러 전문가들이 동일한 지식을 학습하게 되어 파라미터 중복이 발생함.</li><li>그러나, 특정 전문가를 공유 전문가로 지정하여 여러 문맥에서 필요한 공통 지식을 담당하도록 하면,다른 전문가들의 중복 학습이 줄어들어 모델이 더욱 효율적인 구조를 가질 수 있음.</li><li>이는 전문가 specialization를 강화하고, 모델이 적은 파라미터로도 효과적인 성능을 내도록 만듦.</li></ul><p>이를 위해, 세분화된 전문가 분할(Fine-Grained Expert Segmentation) 전략과 함께 $𝐾ₛ$개의 전문가를 공유 전문가로 따로 분리함. 이때,</p><ul><li>라우터 모듈과 관계없이 모든 토큰은 항상 이 공유 전문가들에게 배정됨.</li><li>연산 비용을 일정하게 유지하기 위해, 다른 전문가들에게 라우팅되는 활성 전문가 수를 𝐾ₛ만큼 감소시킴.</li><li>그림 (c) 참고</li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://emjayahn.github.io/categories/Paper/">Paper</category>
+      
+      <category domain="https://emjayahn.github.io/categories/Paper/LLM/">LLM</category>
+      
+      
+      <category domain="https://emjayahn.github.io/tags/LLM/">LLM</category>
+      
+      <category domain="https://emjayahn.github.io/tags/MoE/">MoE</category>
+      
+      <category domain="https://emjayahn.github.io/tags/DeepSeekMoE/">DeepSeekMoE</category>
+      
+      <category domain="https://emjayahn.github.io/tags/Paper-Summary/">Paper Summary</category>
+      
+      
+      <comments>https://emjayahn.github.io/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[Study] Model-Free Prediction</title>
@@ -573,37 +604,6 @@
       
       
       <comments>https://emjayahn.github.io/2021/10/13/C-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-DataTypes/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[세미나요약] 데이터 분석, 의심에서 전달까지</title>
-      <link>https://emjayahn.github.io/2021/10/10/summary-seminar-EDA/</link>
-      <guid>https://emjayahn.github.io/2021/10/10/summary-seminar-EDA/</guid>
-      <pubDate>Sun, 10 Oct 2021 03:45:08 GMT</pubDate>
-      
-      <description>&lt;p&gt;2021년 10월 8일, 한국에너지기술연구원 이제현 박사님이 진행하신 ‘데이터 분석, 의심에서 전달까지’ 제목으로 진행된 세미나를 참석했습니다. 본 글은 세미나 내용의 요약입니다.&lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>2021년 10월 8일, 한국에너지기술연구원 이제현 박사님이 진행하신 ‘데이터 분석, 의심에서 전달까지’ 제목으로 진행된 세미나를 참석했습니다. 본 글은 세미나 내용의 요약입니다.</p><span id="more"></span><p>[세미나 발표 PDF 자료]<br><a href="http://www.bigdata-map.kr/board/open">세미나 발표 pdf 자료</a></p><h2 id="1-데이터-의심하기"><a href="#1-데이터-의심하기" class="headerlink" title="1. 데이터 의심하기"></a>1. 데이터 의심하기</h2><h3 id="1-1-레퍼런스의-중요성"><a href="#1-1-레퍼런스의-중요성" class="headerlink" title="1-1. 레퍼런스의 중요성"></a>1-1. 레퍼런스의 중요성</h3><ul><li>분석결과의 신뢰도, 결과의 책임을 위해 데이터의 출처가 명확해야한다. 출처가 분명하지 않은 데이터는 사용하지 않는 것이 최선</li></ul><h3 id="1-2-데이터의-건정성"><a href="#1-2-데이터의-건정성" class="headerlink" title="1-2. 데이터의 건정성"></a>1-2. 데이터의 건정성</h3><ul><li>데이터 자체의 건정성<ul><li>결측치 : 데이터가 없음 → 데이터가 없는 것도 가끔은 중요한 메시지가 될 수 있다. (예: 이미지 데이터 내의 까만 이미지 → 빛이 없다고 해석 가능) 결측치에 대한 해석은 결국, 데이터의 도메인 관점에서 생각</li><li>중복데이터 : 같은 데이터가 여러개 → Key feature 를 중심으로 논리적으로 판단해야한다. 중복데이터에 대해 일괄적인 처리 이전에 고민해보아야 할 문제 (예: 같은 자리에 건물이 겹쳐 있음 : 비정상적인 데이터, 같은 시간 같은 가게에 손님이 두명 : 정상적인 데이터)</li><li>이상치 : (사전적의미) 정상적인 범위에서 벗어나는 데이터 → 통계 분석을 통해 이상치 후보군을 추리고, 도메인 접근을 통해 진짜 이상치인지 판별해야한다. (예: 대학 중퇴자가 왜 소득이 높지? → 빌게이츠, 스티브잡스, 마크 저커버그, 잭도시 등) 이상치로 볼수 있는 데이터가 있다 하더라도, 내가 하는 분석의 목적에 따라서 데이터가 이상치 일수도, 아닐수도 있다. 기계적인 처리는 하면 안됨</li></ul></li></ul><h3 id="1-3-너무-믿지-말아야할-데이터"><a href="#1-3-너무-믿지-말아야할-데이터" class="headerlink" title="1-3. 너무 믿지 말아야할 데이터"></a>1-3. 너무 믿지 말아야할 데이터</h3><ul><li>너무 믿지 말아야할 데이터 : (예: 영화 장르데이터 → 해리포터 1, 2, 3,4 … 의 장르가 모두 다름. 어떤 절대적 기준에 의해 장르 구분이 된 것이 아니라, 누군가의 주관적 관점으로 새긴 데이터)</li></ul><h3 id="1-4-필요-데이터"><a href="#1-4-필요-데이터" class="headerlink" title="1-4. 필요 데이터"></a>1-4. 필요 데이터</h3><ul><li>본격적인 프로젝트 시행 이전에, 필요한 데이터를 빠르게 계획하고, 살펴본뒤 레퍼런스 체크를 시행해야한다.</li></ul><h3 id="1-5-데이터-파악"><a href="#1-5-데이터-파악" class="headerlink" title="1-5. 데이터 파악"></a>1-5. 데이터 파악</h3><ul><li><p>데이터 파악 : 통계치는 같은데 그림을 그리면 다르게 해석된다. 반드시 데이터는 그려보아야 한다. (예: 데이터 사우르스, 통계가 얼마나 눈을 가리는지 보여주는 예시)</p><p>  <img src="/2021/10/10/summary-seminar-EDA/Untitled.png" alt="데이터 사우르스"></p></li><li><p>데이터를 제대로 의심하는 방법 : Exploratory Data Analysis. 데이터를 받았을 때 이렇게 저렇게 찾아보는 과정. (예: 장님이 코끼리를 만져보는 과정) 한명의 장님(나) 여러 방법으로 그려보고 살펴보면서 데이터를 3d 다양한 관점에서 바라보아야 한다. 데이터에 대해 그림을 그릴 때마다 가설을 세우고, 다음 그림을 그릴 때 내 가설을 보완해나아가야함. 마치 셀프 강화학습 처럼</p><ul><li>결국 EDA + Hypothesis + Graph &#x3D; self-강화학습</li></ul></li></ul><h2 id="2-분석-방법-의심하기"><a href="#2-분석-방법-의심하기" class="headerlink" title="2. 분석 방법 의심하기"></a>2. 분석 방법 의심하기</h2><ul><li>사장님이 감자를 잘라달라<ul><li>감자 썰기의 관건: 무엇을 만들 것인가</li><li>요리의 목적에 따라 다양한 감자 형태, 다양한 조리방식이 있을 수 있다</li></ul></li><li>데이터 분석: 무엇을 할 것인가?<ul><li>데이터 분석의 관건: 무엇을 위한 분석인가</li><li>현황 분석(현황 내용전달), 대안 제시 (설득력: 대안의 장점과 단점), 예측모델개발 (신뢰성: 검증결과, 예상오차) 등 목적에 따라 데이터 뿐만 아니라 그에 따른 다양한 데이터 분석 방법이 필요하다</li></ul></li><li>망치와 모루 전략 (Hammer and Anvil Tactic)<ul><li>모루가 버티는 동안 망치가 때린다 (마케도니아 알렉산더 대왕)<ul><li>모루가 중요하다: 지지않아야하고, 이겨한다 → <strong>수학적 엄밀함</strong> (다양한 통계분석방법, T 검정, 층화 추출, 다양한 매트릭, 정규화, 카이제곱, 교차검증 등) 통계학은 의심의 학문이다 : 내가 전체 데이터를 모두 볼 수 없기 때문에 부분만 보고, 부분이 전체에 적용이 될지 → 이 불안을 해소하기 위한 것이 통계학, 수학</li><li>망치 : 나만의 인사이트 → 아무도 못한 생각을 통해 전쟁에서 이기자<ul><li>인사이트 도출 방법: 데이터 자르기 (Segment)</li><li>Airbnb “국내, 300마일”</li><li>인사이트 도출방법: 독창적 시각화 (Visualization)<ul><li>나이팅게일 → 다쳐서가 아니라 더러워서 사람이 죽는다.</li><li>Hans Rosling, Ted, 2007 → Animated bubble chart : 세상은 점점 나아지고 있다, 경향성을 새롭게 보여줌</li><li>Danny Dorling → Slow Down 가속 성장의 시대는 끝났다.</li><li>송강호 → 배우는 오담을 가져온다. 알고보면 그 오답이 진짜 정답이다.</li><li>데이터를 받으면, 공부한대로, 정해진 루틴대로 분석하고 visualization 을 진행함.. 남들도 그렇게 하고 있다. 세상에 없는 방법?</li><li>남들보다 더 많은 시간과 정성 쏟기 + 스스로 생각하기</li></ul></li></ul></li></ul></li></ul></li></ul><h2 id="3-고객에게-잘-전달하기"><a href="#3-고객에게-잘-전달하기" class="headerlink" title="3. 고객에게 잘 전달하기"></a>3. 고객에게 잘 전달하기</h2><ul><li>결과를 보고하는 데이터 분석가의 주의사항<ul><li>내 업무 시간 순이 아니라 상대방 논리에 따라 보고하기</li><li>결론 없이 사실만 나열하면 안됨</li><li>경영 용어가 아닌 통계 용어를 남발하면 안됨</li></ul></li><li>분석을 원하는 사람들의 진짜 원하는 것 찾아내기<ul><li>자신들 조차 원하는게 뭔지 정확히 모른다</li><li>다양한 질문들과 상황을 통해 그들이 원하는 것이 무엇인지 파악</li></ul></li><li>데이터 vs 도메인<ul><li>영문과 교수예시: 우리 영문과는 영어가 모국어처럼 입에 붙어야 비로소 국문과랑 같은 출발선에 서는거다.</li><li>초벌 데이터 분석으로 알아내는 것 &#x3D; 도메인에서는 모두 알고 있는 것</li><li>데이터를 분석해서 실무자에게 공유해야 하는 내용 + 흥미를 보이는 지점, 애매하게 파악하고 있는 부분 캐치 + 심층 분석</li></ul></li></ul><h2 id="4-끊임없는-의심"><a href="#4-끊임없는-의심" class="headerlink" title="4. 끊임없는 의심"></a>4. 끊임없는 의심</h2><ul><li>내 분석결과를 살표본다 : Insight</li><li>내 아이디어를 빠르게 적용 : Agile, 코딩잘하기</li><li>호기심 : 흥미요소</li></ul><h2 id="5-경계하는-자세"><a href="#5-경계하는-자세" class="headerlink" title="5. 경계하는 자세"></a>5. 경계하는 자세</h2><ul><li>생명에 대한 예의<ul><li>국가별 코로나 19 사망자 데이터 분석</li><li>안좋은 소식에 대한 분석결과는 tone &amp; manner 를 지켜서..</li></ul></li><li>데이터 밖의 세계<ul><li>컴퓨터, 데이터 속에서만 사는가? vs 어차피, 결국 숫자일 뿐이야?</li></ul></li><li>식사를 마친 손님 : 얼마나 좋은 재료, 어떤 기법을 사용한 요리?  X → 음식이 제때 나오고, 맛있게 배부른 곳 → 음식을 어떻게 만들었는지는 그 다음 문제</li><li>데이터 분석 : 원래 목적을 잘 파악해서 다가가는게 중요 → 어떤 분석방법, 시각화는 나중, 남들이 잘 하지 않는 시도를 많이 해보기</li></ul><p><a href="http://www.bigdata-map.kr/board/open">세미나 발표 pdf 자료</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://emjayahn.github.io/categories/DataScience/">DataScience</category>
-      
-      <category domain="https://emjayahn.github.io/categories/DataScience/Seminar/">Seminar</category>
-      
-      
-      <category domain="https://emjayahn.github.io/tags/DataAnalysis/">DataAnalysis</category>
-      
-      <category domain="https://emjayahn.github.io/tags/DataScience/">DataScience</category>
-      
-      <category domain="https://emjayahn.github.io/tags/Seminar/">Seminar</category>
-      
-      <category domain="https://emjayahn.github.io/tags/Data/">Data</category>
-      
-      
-      <comments>https://emjayahn.github.io/2021/10/10/summary-seminar-EDA/#disqus_thread</comments>
       
     </item>
     
