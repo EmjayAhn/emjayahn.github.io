@@ -9,8 +9,37 @@
     <atom:link href="https://emjayahn.github.io/atom.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 19 Mar 2025 12:16:45 GMT</pubDate>
+    <pubDate>Mon, 24 Mar 2025 15:00:55 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>DeepSeek-V3 Technical Report 정리</title>
+      <link>https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/</link>
+      <guid>https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/</guid>
+      <pubDate>Mon, 24 Mar 2025 14:58:55 GMT</pubDate>
+      
+      <description>&lt;p&gt;논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.</p><span id="more"></span><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ul><li>Open Source 모델, DeepSeek 시리즈, LLaMA 시리즈, Qwen 시리즈, Mistral 시리즈 등 오픈소스 모델과 비공개 소스 모델들과의 격차를 줄이기 위해 노력중<ul><li>본 논문에서는 오픈소스 모델을 더욱 확장하기 위해 모델 크기 확장 (Scale up)하고 , Mixture-of-Experts를 도입한다.</li><li>Deepseek V3는 총 6710억(671B)개의 파라미터를 가지고 있으며, 그 중 370억(37B) 개가 각 토큰에 대해 활성화 된다.</li></ul></li><li>성능 향상도 중요하지만, 모델 성능과 경제적인 비용을 동시에 추구하고 있다.<ul><li>이를 위해 아키텍쳐 적으로,</li><li>효율적인 추론을 위해 Multi-head Latent Attention (MLA) 구조를 채택하고</li><li>비용 효율적인 학습을 위해 DeepSeekMoE 구조를 채택하고 있다.</li><li>이 두가지 아키텍처는 이미 DeepSeek V2에서 검증 되었음</li><li>여기에 두 가지 추가 전략을 도입해 V3가 나옴<ul><li>Auxiliary Loss (보조 손실)이 없는 부하 분산 전략 (Auxiliary-loss-free load balancing)을 적용 - 부하 분산을 유도하는 과정에서 발생할 수 있는 모델 성능 저하를 최소화 하는 것을 목표로함<ul><li><strong>(추가설명)</strong> 일반적으로 MoE에서는 모든 Expert들의 작업을 고르게 분배하기 위해 보조 손실을 추가하지만, 이로 인해 성능 저하 현상이 있었다. V3에서는 이러한 보조 손실 없이도 부하 분산을 달성하려는 새로운 전략을 시도하는 것</li></ul></li><li>Multi-token 예측을 학습 목표로 사용 - 여러 벤치마크에서 전반적인 성능 향상 관측<ul><li><strong>(추가설명)</strong> 한 번에 하나의 다음 단어를 예측하는 방식이 아니라, 여러 개의 토큰을 동시에 예측하도록 학습시키는 방식. 이 방법을 통해 더 빠르고 정확한 문장 생성을 가능하게 하며, 결국 전체적인 성능 향상 (벤치마크 비교)에 기여</li></ul></li></ul></li></ul></li><li>효율적인 학습을 위해, FP8 mixed precision training을 수행하고, 학습 프레임워크 전반에 걸쳐 최적화를 수행<ul><li>low -precision training은 효율적인 학습을 위해 좋은 해결책으로 뜨고 있으며, 이는 하드웨어 성능 향상과 밀접한 관련이 있음</li><li>V3에서는 FP8 mixed precision 학습 프레임워크를 도입하였고, 이를 초거대 모델에 처음으로 적용하여 그 효율성을 입증하였음.</li><li>FP8 연산 및 저장을 지원함으로써, 이는 학습 속도를 향상시키고, 적은양의 GPU 메모리를 사용하여 학습을 시키는데 성공하였음<ul><li><strong>(추가설명)</strong> FP8, FP16, BF16은 부동소수점(Floating Point) 숫자를 표현하는 방식이다. CS 내용이지만, 간단하게 설명하면<ul><li>FP 16<ul><li>FP 16의 구성은 이와 같다. 1비트 부호 + 5비트 지수 + 10비트 가수 &#x3D; 총 16비트 - 가수 (소수 부분을 뜻하는거에요)</li><li>기존의 FP32에 비해 표현할 수 있는 수의 범위가 작다. 수의 범위가 작게 되면, 정밀도(precision)가 낮다고 표현하는데 이는 매우 작은 수나 매우 큰 수를 정확하게 표현할 수 없다는 뜻이다. 이런 것을 underflow (매우 작은수) &#x2F; overflow(매우 큰수)현상이라고 한다.</li></ul></li><li>BF 16 (brain float 16)<ul><li>구성 : 1비트 부호 + 8비트 지수 + 7 비트 가수 &#x3D; 총 16비트</li><li>구글에서 개발했는데, 뉴럴 네트워크 학습 목적으로 만든 새로운 자료형이다. 목적은 지수 비트의 수를 키워서 수의 표현범위가 FP32와 동일하게 만드려고 하는 것이다.</li><li>기존의 FP 16에 비해 같은 비트수를 사용하면서도, 수의 범위는 FP32와 같은 숫자를 표현하기 때문에 더 좋은 표현력을 가지고 있음.</li><li>단점으로는 가수가 적어서 정밀도는 FP16에 비해 낮다고 생각할 수 있지만 실제 사용상에는 큰 문제가 없음</li></ul></li><li>FP 8<ul><li>1비트 부호 + 4비트 지수 + 3비트 가수</li><li>당연히 수의 범위가 작지만 메모리는 적게 차지하는 장점이 있지만, 뉴럴네트워크에서 해당 숫자로 표현하면 너무 잃어버리는 정보가 많이 있음</li><li>그래서 이 논문 V3가 주장하는 것은 FP8로 학습시켜도 충분하게 표현할 수 있는 방법을 제시하는 것임.</li></ul></li></ul></li></ul></li></ul></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://emjayahn.github.io/categories/Paper/">Paper</category>
+      
+      <category domain="https://emjayahn.github.io/categories/Paper/LLM/">LLM</category>
+      
+      
+      <category domain="https://emjayahn.github.io/tags/LLM/">LLM</category>
+      
+      <category domain="https://emjayahn.github.io/tags/DeepSeekV3/">DeepSeekV3</category>
+      
+      <category domain="https://emjayahn.github.io/tags/Paper-Summary/">Paper Summary</category>
+      
+      
+      <comments>https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>DeepSeekMoE 요약</title>
@@ -32,11 +61,11 @@
       
       <category domain="https://emjayahn.github.io/tags/LLM/">LLM</category>
       
+      <category domain="https://emjayahn.github.io/tags/Paper-Summary/">Paper Summary</category>
+      
       <category domain="https://emjayahn.github.io/tags/MoE/">MoE</category>
       
       <category domain="https://emjayahn.github.io/tags/DeepSeekMoE/">DeepSeekMoE</category>
-      
-      <category domain="https://emjayahn.github.io/tags/Paper-Summary/">Paper Summary</category>
       
       
       <comments>https://emjayahn.github.io/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/#disqus_thread</comments>
@@ -575,35 +604,6 @@
       
       
       <comments>https://emjayahn.github.io/2021/10/14/C-%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%89%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A1-Operators/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[C++] 1.자료형(DataTypes)</title>
-      <link>https://emjayahn.github.io/2021/10/13/C-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-DataTypes/</link>
-      <guid>https://emjayahn.github.io/2021/10/13/C-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-DataTypes/</guid>
-      <pubDate>Wed, 13 Oct 2021 12:35:26 GMT</pubDate>
-      
-      <description>&lt;p&gt;C와 C++이 필요해, 제 머릿속 메모리의 Recall 이 필요했습니다. 요즘엔 주로 Python을 사용하다보니, C, C++ 의 기초문법과 CodeStyle을 다시 떠올려야합니다. 학생 때 열심히 공부했으나 방구석 한켠에 먼지 쌓인 열혈강의 C, C++책과 인터넷자료, 유튜브를 통해 Remind하고 공부하는 내용을 요약 정리하려고 합니다. 본 글에서는 C에 대한 내용보다 C++ 내용이 주를 이룰 예정입니다. &lt;/p&gt;</description>
-      
-      
-      
-      <content:encoded><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>C와 C++이 필요해, 제 머릿속 메모리의 Recall 이 필요했습니다. 요즘엔 주로 Python을 사용하다보니, C, C++ 의 기초문법과 CodeStyle을 다시 떠올려야합니다. 학생 때 열심히 공부했으나 방구석 한켠에 먼지 쌓인 열혈강의 C, C++책과 인터넷자료, 유튜브를 통해 Remind하고 공부하는 내용을 요약 정리하려고 합니다. 본 글에서는 C에 대한 내용보다 C++ 내용이 주를 이룰 예정입니다. </p><span id="more"></span><h2 id="1-C-의-주석"><a href="#1-C-의-주석" class="headerlink" title="1. C++ 의 주석"></a>1. C++ 의 주석</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 주석</span></span><br></pre></td></tr></table></figure><h2 id="2-C-의-자료형-DataType"><a href="#2-C-의-자료형-DataType" class="headerlink" title="2. C++ 의 자료형, DataType"></a>2. C++ 의 자료형, DataType</h2><h3 id="자료형s"><a href="#자료형s" class="headerlink" title="자료형s"></a>자료형s</h3><p>정수형 : <code>char</code> 1byte, <code>short</code> 2byte, <code>int</code> 4byte, <code>long</code> 4byte, <code>long long</code> 8byte 등</p><p>실수형 : <code>float</code> 4byte, <code>double</code> 8byte 등</p><p>평소엔 : <code>signed int</code>, signed 는 생략 (-128 ~ 127)</p><ul><li>MSB 0 000 0000 (2) : MSB - Most Significant Bit for sign</li></ul><p>양의 값만 할당 : <code>unsigned int</code> (0 ~ 255)</p><p>unsigned 값에 256 을 할당하면? bit: 1111 1111 (2) + 1 (2) &#x3D; 1 0000 0000 → 0으로 생각 (overflow)</p><p>unsigned 값에 -1 을 할당하면? bit: 1111 1111 (2) &#x3D; 255 (10) (-1의 정의는 1을 더했을 때 0이 되는 값으로 정의하므로 1111 1111로 표현되며(2의보수법), 이는 unsigned의 컴파일 결과 255로 표현된다)</p><h3 id="실수표현방법-부동소수점-방식"><a href="#실수표현방법-부동소수점-방식" class="headerlink" title="실수표현방법: 부동소수점 방식"></a>실수표현방법: 부동소수점 방식</h3><ul><li>부동소수점 방식으로 소수와 실수를 표현하는 것은 글로 정리하는 것이 오히려 혼란을 야기할 수 있으므로, 추후에 필요하다면 손으로 쓴 풀이를 정리해보겠습니다.<ul><li>참고: <a href="https://ko.wikipedia.org/wiki/%EB%B6%80%EB%8F%99%EC%86%8C%EC%88%98%EC%A0%90">부동소수점 위키백과</a></li></ul></li><li>정수와 실수의 메모리 저장 방식은 각가 다른 것이 중요</li><li>따라서 정수와 실수간의 연산 방식은 기존의 연산방식은 다름</li><li><code>float</code> 과 <code>double</code> 을 적절히 활용하여 실수값의 범위에 따라 사용</li></ul><h3 id="TypeCasting-형변환"><a href="#TypeCasting-형변환" class="headerlink" title="TypeCasting(형변환)"></a>TypeCasting(형변환)</h3><p>서로 다른 자료형끼리 연산은 되도록 자제해야하지만, 어쩔수 없이 수행해야만 하는 순간이 있기 마련이다. C++ 에서는 Python과 달리 compiler 에 의존하는 경우가 많기 때문에 TypeCasting 을 의식적으로 해주는 것이 코드 가독성과 예측성을 높이는 방법이다. TypeCasting 을 해주지 않아도, 실제로는 compiler 가 강제적으로 형변환하여 연산하지만, 이는 의도와 다른 결과를 만들어내 실수할 수 있는 여지를 많이 남기는 것이다. 습관처럼 예상하고 필요시 꼭 casting 하도록 하자.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> int_number = <span class="number">5</span></span><br><span class="line"><span class="type">float</span> floating_number = <span class="number">3.0</span></span><br><span class="line"><span class="comment">//Type Casting</span></span><br><span class="line"><span class="type">float</span> result = floating_number + (<span class="type">float</span>)int_number</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://emjayahn.github.io/categories/Development/">Development</category>
-      
-      <category domain="https://emjayahn.github.io/categories/Development/C/">C++</category>
-      
-      
-      <category domain="https://emjayahn.github.io/tags/Language/">Language</category>
-      
-      <category domain="https://emjayahn.github.io/tags/C/">C++</category>
-      
-      <category domain="https://emjayahn.github.io/tags/C/">C</category>
-      
-      
-      <comments>https://emjayahn.github.io/2021/10/13/C-%E1%84%8C%E1%85%A1%E1%84%85%E1%85%AD%E1%84%92%E1%85%A7%E1%86%BC-DataTypes/#disqus_thread</comments>
       
     </item>
     
