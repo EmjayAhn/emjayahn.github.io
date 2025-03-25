@@ -206,44 +206,6 @@ You can start your first spider with:
 <h2 id="무엇을-느꼈는가"><a href="#무엇을-느꼈는가" class="headerlink" title="무엇을 느꼈는가"></a>무엇을 느꼈는가</h2><ul>
 <li>동영상과 이미지를 처리하는 방법에 대해 공부하면서, Selenium 을 활용해 많은 활용도를 느꼈다.<br>주말을 이용해 동영상이나 이미지들을 Crawling 해서 class 형태로 만드는 방법을 시도해봐야겠다.</li>
 </ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-10-24T03:02:50.000Z" title="2018. 10. 24. 오후 12:02:50">2018-10-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-29T14:02:02.000Z" title="2018. 11. 29. 오후 11:02:02">2018-11-29</time></span><span class="level-item"><a class="link-muted" href="/categories/wiki/">wiki</a><span> / </span><a class="link-muted" href="/categories/wiki/Requests/">Requests</a></span><span class="level-item">4 minutes read (About 560 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/10/24/Requests/">Requests</a></h1><div class="content"><h1 id="WEB-CRAWLING-1"><a href="#WEB-CRAWLING-1" class="headerlink" title="WEB CRAWLING 1"></a>WEB CRAWLING 1</h1><blockquote>
-<p>공부한 내용을 스스로 보기 쉽게 정리한 글입니다.</p>
-</blockquote>
-<h2 id="Requests"><a href="#Requests" class="headerlink" title="Requests "></a>Requests <br></h2><ul>
-<li>Requests 패키지는 크롤링 하고자 하는 페이지를 url 값을 통해 가져와 객체로 변환 해주는 기능을 가지고 있다. <br></li>
-</ul>
-<h3 id="1-Installation"><a href="#1-Installation" class="headerlink" title="1. Installation"></a>1. Installation</h3><ul>
-<li>Requests 를 이용하기 위해 package 를 설치해준다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install requests</span><br></pre></td></tr></table></figure>
-<br></li>
-<li>request를 이용하면서, json 형식으로의 크롤링과, html 형식으로 css  selecting 을 위한 크롤링을 실습해 볼 것이므로, BeautifulSoup Package 역시 같이 설치해준다. (BeautifulSoup은 html parser 를 이용해보기 위함이다.)</li>
-<li>python-forecastio 는 dark sky 의 api를 활용해 날씨 데이터를 받아올때 사용해보기 위해 설치한다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install bs4</span><br><span class="line">$ pip3 install python-forecastio</span><br></pre></td></tr></table></figure></li>
-<li>import 할 것들<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> forecastio</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> pandas.io.json <span class="keyword">import</span> json_normalize</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-jSON-Dark-Sky-api-활용-날씨정보-가져오기"><a href="#2-jSON-Dark-Sky-api-활용-날씨정보-가져오기" class="headerlink" title="2. [ jSON ] Dark Sky api 활용 날씨정보 가져오기"></a>2. [ jSON ] Dark Sky api 활용 날씨정보 가져오기</h3><ul>
-<li><p>DarkSky api 는 위도와 경도를 입력하면, 날씨 정보를 주는 api 이다.</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://darsky.net/dev/">https://darsky.net/dev/</a> 에 가입 후, TOKEN 을 받는다.</p>
-</li>
-<li><p>위에서 받은 개인의 TOKEN 을 활용해 url 을 먼저, formating을 해준다.</p>
-</li>
-<li><p>requests의 get 메소드를 활용해 url 의 정보를 받아온다.</p>
-</li>
-<li><p>받아온 정보를 requests 의 json 메소드로 json 형식으로 변환해준다.</p>
-</li>
-<li><p>json 을 확인하고 원하는 정보를 return 해준다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">forecast</span>(<span class="params">lat, lng</span>):</span><br><span class="line">  url = <span class="string">&quot;https://api.darksky.net/forecast/&#123;&#125;/&#123;&#125;,&#123;&#125;&quot;</span>.<span class="built_in">format</span>(TOKEN, lat, lng)</span><br><span class="line">      response = requests.get(url)</span><br><span class="line">      json_obj = response.json()</span><br><span class="line">      <span class="keyword">return</span> json_obj[<span class="string">&quot;hourly&quot;</span>][<span class="string">&quot;summary&quot;</span>]</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="3-html-BS4-활용-html-selecting-해서-가져오기"><a href="#3-html-BS4-활용-html-selecting-해서-가져오기" class="headerlink" title="3. [ html ] BS4 활용 html selecting 해서 가져오기"></a>3. [ html ] BS4 활용 html selecting 해서 가져오기</h3><ul>
-<li>네이버의 실시간 검색순위 부분의 text 를 크롤링 해보자</li>
-<li>html 파일을 BS4 를 활용해 받아온뒤, CSS selecting 으로 원하는 text data 를 가져온다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">naver</span>():</span><br><span class="line">  url = <span class="string">&quot;https://www.naver.com&quot;</span></span><br><span class="line">  df = pd.DataFrame(columns=[<span class="string">&quot;rank&quot;</span>, <span class="string">&quot;keyword&quot;</span>])</span><br><span class="line">  response = requests.get(url)</span><br><span class="line">  dom = BeautifulSoup(response.content, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># BeautifulSoup(markup, features, builder, parse_only, from_encoding, exclude_encodings)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> keyword <span class="keyword">in</span> keywords:</span><br><span class="line">        df.loc[<span class="built_in">len</span>(df)] = &#123;</span><br><span class="line">            <span class="string">&quot;rank&quot;</span>:keyword.select_one(<span class="string">&#x27;.ah_r&#x27;</span>).text,</span><br><span class="line">            <span class="string">&quot;keyword&quot;</span>:keyword.select_one(<span class="string">&#x27;.ah_k&#x27;</span>).text</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
-<ul>
-<li>print(response.content)의 모양을 보자.</li>
-<li>따라서, BeautifulSoup 으로 html 형식으로 parsing 해주고, css 를 활용해 selecting 해준다.</li>
-<li>.select 는 여러개의 엘리먼트를 선택 -&gt; 결과가 리스트</li>
-<li>.select_one은 하나의 엘리먼트를 선택 -&gt; 결과가 하나의 객체</li>
-</ul>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-10-24T03:02:50.000Z" title="2018. 10. 24. 오후 12:02:50">2018-10-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-12-07T10:50:17.178Z" title="2022. 12. 7. 오후 7:50:17">2022-12-07</time></span><span class="level-item"><a class="link-muted" href="/categories/wiki/">wiki</a><span> / </span><a class="link-muted" href="/categories/wiki/Selenium/">Selenium</a></span><span class="level-item">6 minutes read (About 896 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/10/24/Selenium/">Selenium</a></h1><div class="content"><h1 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h1><blockquote>
 <p>공부한 내용을 스스로 보기 쉽게 정리한 글입니다.</p>
 </blockquote>
@@ -296,6 +258,44 @@ You can start your first spider with:
 </ul>
 <h2 id="7-element-의-위치와-사이즈-구하기"><a href="#7-element-의-위치와-사이즈-구하기" class="headerlink" title="7. element 의 위치와, 사이즈 구하기"></a>7. element 의 위치와, 사이즈 구하기</h2><ul>
 <li>스크롤을 내리거나, 엘리먼트의 위치와 크기를 알고 싶을 때 사용할 수 있다.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element = driver.find_element_by_css_selector(<span class="string">&quot;name of css selector&quot;</span>)</span><br><span class="line">element.location</span><br><span class="line"><span class="comment">#element 의 좌측 상단의 위치가 pixel 단위로 x, y 값의 dictionary로 보여준다.</span></span><br><span class="line">element.size</span><br><span class="line"><span class="comment">#element 의 size 를 height, width를 pixel 단위로 dictionary로 보여준다.</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-10-24T03:02:50.000Z" title="2018. 10. 24. 오후 12:02:50">2018-10-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2018-11-29T14:02:02.000Z" title="2018. 11. 29. 오후 11:02:02">2018-11-29</time></span><span class="level-item"><a class="link-muted" href="/categories/wiki/">wiki</a><span> / </span><a class="link-muted" href="/categories/wiki/Requests/">Requests</a></span><span class="level-item">4 minutes read (About 560 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/10/24/Requests/">Requests</a></h1><div class="content"><h1 id="WEB-CRAWLING-1"><a href="#WEB-CRAWLING-1" class="headerlink" title="WEB CRAWLING 1"></a>WEB CRAWLING 1</h1><blockquote>
+<p>공부한 내용을 스스로 보기 쉽게 정리한 글입니다.</p>
+</blockquote>
+<h2 id="Requests"><a href="#Requests" class="headerlink" title="Requests "></a>Requests <br></h2><ul>
+<li>Requests 패키지는 크롤링 하고자 하는 페이지를 url 값을 통해 가져와 객체로 변환 해주는 기능을 가지고 있다. <br></li>
+</ul>
+<h3 id="1-Installation"><a href="#1-Installation" class="headerlink" title="1. Installation"></a>1. Installation</h3><ul>
+<li>Requests 를 이용하기 위해 package 를 설치해준다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install requests</span><br></pre></td></tr></table></figure>
+<br></li>
+<li>request를 이용하면서, json 형식으로의 크롤링과, html 형식으로 css  selecting 을 위한 크롤링을 실습해 볼 것이므로, BeautifulSoup Package 역시 같이 설치해준다. (BeautifulSoup은 html parser 를 이용해보기 위함이다.)</li>
+<li>python-forecastio 는 dark sky 의 api를 활용해 날씨 데이터를 받아올때 사용해보기 위해 설치한다.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install bs4</span><br><span class="line">$ pip3 install python-forecastio</span><br></pre></td></tr></table></figure></li>
+<li>import 할 것들<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> forecastio</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> pandas.io.json <span class="keyword">import</span> json_normalize</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-jSON-Dark-Sky-api-활용-날씨정보-가져오기"><a href="#2-jSON-Dark-Sky-api-활용-날씨정보-가져오기" class="headerlink" title="2. [ jSON ] Dark Sky api 활용 날씨정보 가져오기"></a>2. [ jSON ] Dark Sky api 활용 날씨정보 가져오기</h3><ul>
+<li><p>DarkSky api 는 위도와 경도를 입력하면, 날씨 정보를 주는 api 이다.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://darsky.net/dev/">https://darsky.net/dev/</a> 에 가입 후, TOKEN 을 받는다.</p>
+</li>
+<li><p>위에서 받은 개인의 TOKEN 을 활용해 url 을 먼저, formating을 해준다.</p>
+</li>
+<li><p>requests의 get 메소드를 활용해 url 의 정보를 받아온다.</p>
+</li>
+<li><p>받아온 정보를 requests 의 json 메소드로 json 형식으로 변환해준다.</p>
+</li>
+<li><p>json 을 확인하고 원하는 정보를 return 해준다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">forecast</span>(<span class="params">lat, lng</span>):</span><br><span class="line">  url = <span class="string">&quot;https://api.darksky.net/forecast/&#123;&#125;/&#123;&#125;,&#123;&#125;&quot;</span>.<span class="built_in">format</span>(TOKEN, lat, lng)</span><br><span class="line">      response = requests.get(url)</span><br><span class="line">      json_obj = response.json()</span><br><span class="line">      <span class="keyword">return</span> json_obj[<span class="string">&quot;hourly&quot;</span>][<span class="string">&quot;summary&quot;</span>]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-html-BS4-활용-html-selecting-해서-가져오기"><a href="#3-html-BS4-활용-html-selecting-해서-가져오기" class="headerlink" title="3. [ html ] BS4 활용 html selecting 해서 가져오기"></a>3. [ html ] BS4 활용 html selecting 해서 가져오기</h3><ul>
+<li>네이버의 실시간 검색순위 부분의 text 를 크롤링 해보자</li>
+<li>html 파일을 BS4 를 활용해 받아온뒤, CSS selecting 으로 원하는 text data 를 가져온다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">naver</span>():</span><br><span class="line">  url = <span class="string">&quot;https://www.naver.com&quot;</span></span><br><span class="line">  df = pd.DataFrame(columns=[<span class="string">&quot;rank&quot;</span>, <span class="string">&quot;keyword&quot;</span>])</span><br><span class="line">  response = requests.get(url)</span><br><span class="line">  dom = BeautifulSoup(response.content, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># BeautifulSoup(markup, features, builder, parse_only, from_encoding, exclude_encodings)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> keyword <span class="keyword">in</span> keywords:</span><br><span class="line">        df.loc[<span class="built_in">len</span>(df)] = &#123;</span><br><span class="line">            <span class="string">&quot;rank&quot;</span>:keyword.select_one(<span class="string">&#x27;.ah_r&#x27;</span>).text,</span><br><span class="line">            <span class="string">&quot;keyword&quot;</span>:keyword.select_one(<span class="string">&#x27;.ah_k&#x27;</span>).text</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
+<ul>
+<li>print(response.content)의 모양을 보자.</li>
+<li>따라서, BeautifulSoup 으로 html 형식으로 parsing 해주고, css 를 활용해 selecting 해준다.</li>
+<li>.select 는 여러개의 엘리먼트를 선택 -&gt; 결과가 리스트</li>
+<li>.select_one은 하나의 엘리먼트를 선택 -&gt; 결과가 하나의 객체</li>
 </ul>
 </div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-10-24T03:02:50.000Z" title="2018. 10. 24. 오후 12:02:50">2018-10-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2019-08-06T13:13:46.000Z" title="2019. 8. 6. 오후 10:13:46">2019-08-06</time></span><span class="level-item"><a class="link-muted" href="/categories/Development/">Development</a><span> / </span><a class="link-muted" href="/categories/Development/Python/">Python</a></span><span class="level-item">a minute read (About 216 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/10/24/Thread/">Thread</a></h1><div class="content"><h1 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h1><blockquote>
 <p>공부한 내용을 스스로 보기 쉽게 정리한 글입니다.</p>

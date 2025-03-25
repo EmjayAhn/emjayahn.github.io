@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>DeepSeek-V3 Technical Report 정리 - EmjayAhn, DataScienceBook</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="EmjayAhn, DataScienceBook"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="EmjayAhn, DataScienceBook"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."><meta property="og:type" content="blog"><meta property="og:title" content="DeepSeek-V3 Technical Report 정리"><meta property="og:url" content="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"><meta property="og:site_name" content="EmjayAhn, DataScienceBook"><meta property="og:description" content="논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."><meta property="og:locale" content="en_US"><meta property="og:image" content="https://emjayahn.github.io/img/logo2.png"><meta property="article:published_time" content="2025-03-24T14:58:55.000Z"><meta property="article:modified_time" content="2025-03-24T15:00:55.261Z"><meta property="article:author" content="Emjay Ahn"><meta property="article:tag" content="LLM"><meta property="article:tag" content="DeepSeekV3"><meta property="article:tag" content="Paper Summary"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://emjayahn.github.io/img/logo2.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"},"headline":"DeepSeek-V3 Technical Report 정리","image":["https://emjayahn.github.io/img/logo2.png"],"datePublished":"2025-03-24T14:58:55.000Z","dateModified":"2025-03-24T15:00:55.261Z","author":{"@type":"Person","name":"Emjay Ahn"},"publisher":{"@type":"Organization","name":"EmjayAhn, DataScienceBook","logo":{"@type":"ImageObject","url":"https://emjayahn.github.io/img/logo3_cut.png"}},"description":"논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."}</script><link rel="canonical" href="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-128251719-1" async></script><script>window.dataLayer = window.dataLayer || [];
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>DeepSeek-V3 Technical Report 정리 - EmjayAhn, DataScienceBook</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="EmjayAhn, DataScienceBook"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="EmjayAhn, DataScienceBook"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."><meta property="og:type" content="blog"><meta property="og:title" content="DeepSeek-V3 Technical Report 정리"><meta property="og:url" content="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"><meta property="og:site_name" content="EmjayAhn, DataScienceBook"><meta property="og:description" content="논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."><meta property="og:locale" content="en_US"><meta property="og:image" content="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/V3_1.png"><meta property="article:published_time" content="2025-03-24T14:58:55.000Z"><meta property="article:modified_time" content="2025-03-25T09:45:20.230Z"><meta property="article:author" content="Emjay Ahn"><meta property="article:tag" content="LLM"><meta property="article:tag" content="Paper Summary"><meta property="article:tag" content="DeepSeekV3"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/V3_1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"},"headline":"DeepSeek-V3 Technical Report 정리","image":["https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/V3_1.png"],"datePublished":"2025-03-24T14:58:55.000Z","dateModified":"2025-03-25T09:45:20.230Z","author":{"@type":"Person","name":"Emjay Ahn"},"publisher":{"@type":"Organization","name":"EmjayAhn, DataScienceBook","logo":{"@type":"ImageObject","url":"https://emjayahn.github.io/img/logo3_cut.png"}},"description":"논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다."}</script><link rel="canonical" href="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-128251719-1" async></script><script>window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
@@ -35,16 +35,18 @@
   })();
   </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="EmjayAhn, DataScienceBook" type="application/atom+xml">
 <link rel="alternate" href="/atom.xml" title="EmjayAhn, DataScienceBook" type="application/rss+xml">
-</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo3_cut.png" alt="EmjayAhn, DataScienceBook" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/emjayahn/"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2025-03-24T14:58:55.000Z" title="2025. 3. 24. 오후 11:58:55">2025-03-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-03-24T15:00:55.261Z" title="2025. 3. 25. 오전 12:00:55">2025-03-25</time></span><span class="level-item"><a class="link-muted" href="/categories/Paper/">Paper</a><span> / </span><a class="link-muted" href="/categories/Paper/LLM/">LLM</a></span><span class="level-item">8 minutes read (About 1187 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">DeepSeek-V3 Technical Report 정리</h1><div class="content"><p>논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.</p>
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo3_cut.png" alt="EmjayAhn, DataScienceBook" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/emjayahn/"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2025-03-24T14:58:55.000Z" title="2025. 3. 24. 오후 11:58:55">2025-03-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2025-03-25T09:45:20.230Z" title="2025. 3. 25. 오후 6:45:20">2025-03-25</time></span><span class="level-item"><a class="link-muted" href="/categories/Paper/">Paper</a><span> / </span><a class="link-muted" href="/categories/Paper/LLM/">LLM</a></span><span class="level-item">33 minutes read (About 4906 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">DeepSeek-V3 Technical Report 정리</h1><div class="content"><p>논문 DeepSeek-V3 Technical Report를 읽고 주요 contribution 내용과 개인적으로 꼭 기억할 내용을 요약하여 정리해본다.</p>
 <span id="more"></span>
 
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ul>
-<li>Open Source 모델, DeepSeek 시리즈, LLaMA 시리즈, Qwen 시리즈, Mistral 시리즈 등 오픈소스 모델과 비공개 소스 모델들과의 격차를 줄이기 위해 노력중<ul>
+<li><p>Open Source 모델, DeepSeek 시리즈, LLaMA 시리즈, Qwen 시리즈, Mistral 시리즈 등 오픈소스 모델과 비공개 소스 모델들과의 격차를 줄이기 위해 노력중</p>
+<ul>
 <li>본 논문에서는 오픈소스 모델을 더욱 확장하기 위해 모델 크기 확장 (Scale up)하고 , Mixture-of-Experts를 도입한다.</li>
 <li>Deepseek V3는 총 6710억(671B)개의 파라미터를 가지고 있으며, 그 중 370억(37B) 개가 각 토큰에 대해 활성화 된다.</li>
 </ul>
 </li>
-<li>성능 향상도 중요하지만, 모델 성능과 경제적인 비용을 동시에 추구하고 있다.<ul>
+<li><p>성능 향상도 중요하지만, 모델 성능과 경제적인 비용을 동시에 추구하고 있다.</p>
+<ul>
 <li>이를 위해 아키텍쳐 적으로,</li>
 <li>효율적인 추론을 위해 Multi-head Latent Attention (MLA) 구조를 채택하고</li>
 <li>비용 효율적인 학습을 위해 DeepSeekMoE 구조를 채택하고 있다.</li>
@@ -62,7 +64,8 @@
 </li>
 </ul>
 </li>
-<li>효율적인 학습을 위해, FP8 mixed precision training을 수행하고, 학습 프레임워크 전반에 걸쳐 최적화를 수행<ul>
+<li><p>효율적인 학습을 위해, FP8 mixed precision training을 수행하고, 학습 프레임워크 전반에 걸쳐 최적화를 수행</p>
+<ul>
 <li>low -precision training은 효율적인 학습을 위해 좋은 해결책으로 뜨고 있으며, 이는 하드웨어 성능 향상과 밀접한 관련이 있음</li>
 <li>V3에서는 FP8 mixed precision 학습 프레임워크를 도입하였고, 이를 초거대 모델에 처음으로 적용하여 그 효율성을 입증하였음.</li>
 <li>FP8 연산 및 저장을 지원함으로써, 이는 학습 속도를 향상시키고, 적은양의 GPU 메모리를 사용하여 학습을 시키는데 성공하였음<ul>
@@ -91,8 +94,173 @@
 </li>
 </ul>
 </li>
+<li><p>사전 학습(pre-training) 14.8조(14.8T)개의 고품질, 다양성 있는 토큰들로 학습시켰음</p>
+<ul>
+<li>사전학습 과정은 매우 안정적이었음 : 복구불가능한 loss spike (손실 급증), roll back 할 상황이 없었음</li>
+<li>그 다음엔 V3의 context 길이를 두 단계에 걸쳐 확장하는 작업을 수행했음<ul>
+<li>1단계 : 최대 context 길이를 32000(32K) 토큰까지 확장</li>
+<li>2단계 : 이를 128000토큰(128K)까지 더 확장하였음</li>
 </ul>
-</div><div class="article-licensing box"><div class="licensing-title"><p>DeepSeek-V3 Technical Report 정리</p><p><a href="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-정리/">https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-정리/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Emjay Ahn</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2025-03-24</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2025-03-25</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/LLM/">LLM</a><a class="link-muted mr-2" rel="tag" href="/tags/DeepSeekV3/">DeepSeekV3</a><a class="link-muted mr-2" rel="tag" href="/tags/Paper-Summary/">Paper Summary</a></div><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d2ca2d817ca3533" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="https://buymeacoffee.com/cHgDES9Ut" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/"><span class="level-item">DeepSeekMoE 요약</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+</li>
+<li>이후 V3 base 모델을 기반으로 post-training (후속 학습)을 수행.<ul>
+<li>지도 학습 기반의 미세조정 (Supervised Fine Tuning, SFT)</li>
+<li>강화 학습 (Reinforcement Learning, RL)</li>
+<li>distiliation</li>
+</ul>
+</li>
+<li>이 Post-training은 모델을 인간의 선호 (human preferences)에 더 잘 맞추고, 모델의 잠재력을 더욱 끌어내기 위함</li>
+<li>후속 학습 단계에서는 DeepSeek R1 시리즈 모델로부터 추론 능력 (reasoning capability)을 distillation하였고, 동시에 모델의 정확도와 생성되는 응답 길이 사이의 균형을 유지할 수 있게하였다. </li>
+<li><strong>(추가설명)</strong> context length extension 이란 context 길이는 모델이 한 번에 처리할 수 있는 텍스트 길이를 의미. 예를 들어 GPT 2,3는 2000~4000 token 길이이고, GPT-4 Turbo는 128000(128K). (확인필요) V3에서 128K까지 확장했다는 것은 매우 긴 문서를 한 번에 처리할 수 있다는 뜻</li>
+<li><strong>(추가설명)</strong> Post-training SFT란 정답이 있는 데이터를 기반으로 정확한 응답을 생성하도록 미세 조정 학습. 보통 RL 이라고 하면, RLHF 를 의미했는데 여기서는 다른 의미일 수도 있음 (더 읽어봐야함)</li>
+<li><strong>(추가설명)</strong> Distillation 큰 모델을 선생님으로 두고 선생님의 답을 따라하도록 작은 모델이 학습하는 방법</li>
+</ul>
+</li>
+<li><p>V3 base 모델은 오픈소스 모델 중 벤치마크 성능이 가장 뛰어났으며, 코드와 수학 분야에서 특히 좋은 성능을 보였음</p>
+<ul>
+<li>V3 chat 버전 역시 다른 오픈소스 모델보다 뛰어난 성능을 보임</li>
+<li>GPT-4o, Claude 3.5 Sonnet과 견줄 수 있는 성능, open-ended 벤치마크에서 비슷한 성능</li>
+</ul>
+</li>
+<li><p>Deepseek V3는 학습 비용면에서 경제적임을 강조.</p>
+<ul>
+<li>사전학습 (pre-training) 단계에서, V3를 1조 (1T) 토큰을 학습시키는 데 18만(180K) 시간의 H800 GPU 시간이 필요했음</li>
+<li>이는 2048개의 H800 GPU 클러스터 기준 3.7일 만임</li>
+<li>결과적으로 전체 사전 학습은 두 달도 안걸리게 완료되었으며, 총 266만 4천 (2.664M) GPU 시간이 소요</li>
+</ul>
+</li>
+<li><p>context length extension에는 11만 9천 (119K) GPU 시간,</p>
+</li>
+<li><p>post-training에는 5천(5K) GPU 시간이 걸림</p>
+</li>
+<li><p>최종적으로 V3를 학습에 소요된 총 시간은 278만 8천 (2.788M) GPU 시간</p>
+</li>
+<li><p>H800 GPU 임대 비용이 시간당 $2로 가정하면, 전체 학습 비용은 약 557만 6천 달러 ($5.576M)</p>
+<ul>
+<li>이 비용은 V3 학습만 포함된 것이며, 아키텍처, 알고리즘, 데이터에 대한 연구, 실험에 드는 비용은 포함되지 않음</li>
+</ul>
+</li>
+<li><p>이후 다룰 내용</p>
+</li>
+</ul>
+<ol>
+<li>먼저, DeepSeek-V3 모델 아키텍처에 대한 상세한 설명을 제시합니다 (2장).</li>
+<li>이어서, 우리의 인프라 구조를 소개합니다. 이에는 컴퓨팅 클러스터, 학습 프레임워크, FP8 학습 지원, 추론 배포 전략, 그리고 미래 하드웨어 설계에 대한 제안이 포함됩니다.</li>
+<li>다음으로, 우리의 사전 학습 과정을 설명합니다.<br>여기에는 학습 데이터 구성, 하이퍼파라미터 설정, 긴 문맥 처리 기법(long-context extension techniques), 관련 평가 및 논의가 포함됩니다 (4장).</li>
+<li>그 다음으로는, 후속 학습(post-training)에 관한 설명이 이어집니다.<br>지도 미세조정(SFT), 강화 학습(RL), 그에 따른 평가 및 논의가 포함됩니다 (5장).</li>
+<li>마지막으로, 우리는 본 연구를 정리(conclude)하고,<br>DeepSeek-V3의 현재 한계점에 대해 논의하며, 향후 연구를 위한 방향을 제안합니다 (6장).</li>
+</ol>
+<h2 id="2-Architecture"><a href="#2-Architecture" class="headerlink" title="2. Architecture"></a>2. Architecture</h2><ul>
+<li>DeepSeek-V3 기본 아키텍처 소개<ul>
+<li>효율적인 Inference를 위한 Multi-head Latent Attention (MLA)</li>
+<li>경제적인 Training을 위한 DeepSeekMoE</li>
+<li>학습 목표(objective) : Multi-Token Prediction - 이거 해봤더니 모델 성능이 향상되더라</li>
+<li>그 외의 설정과 구조는 V2를 따름</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-Basic-Architecture"><a href="#2-1-Basic-Architecture" class="headerlink" title="2.1 Basic Architecture"></a>2.1 Basic Architecture</h3><ul>
+<li>V3 기본 unit은 여전히 Transformer 구조를 쌓아 올린 것</li>
+<li>다시 한번 정리하지만, MLA와 DeepSeekMoE는 V2에서 검증이 되었음, V2와 비교했을 때 한 가지 예외적인 차이점은 DeepSeekMoE에서 auxiliary-loss-free (보조 손실이 없는) 부하 분산 전략을 새롭게 도입하여, load balance를 맞추는 과정에서 발생할 수 있는 성능 저하를 완화하고자 하였음<br><img src="/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/V3_1.png"></li>
+</ul>
+<h4 id="2-1-1-Multi-Head-Latent-Attention"><a href="#2-1-1-Multi-Head-Latent-Attention" class="headerlink" title="2.1.1 Multi-Head Latent Attention"></a>2.1.1 Multi-Head Latent Attention</h4><p>DeepSeek-V3는 attention 구조로 MLA(Multi-head Latent Attention) 아키텍처를 채택합니다.<br>• $d$는 임베딩 차원(embedding dimension),<br>• $n_h$는 attention head의 개수,<br>• $d_h$는 각 head당 차원,<br>• $h_t \in \mathbb{R}^d$는 해당 attention layer에서 t번째 토큰의 입력 벡터를 나타냅니다.</p>
+<p>MLA의 핵심은 attention key와 value를 위한 저차원(low-rank) joint compression, 추론 시 Key-Value(KV) 캐시 사용량을 줄이는 데 목적이 있습니다<br>$$ \begin{aligned} c_{t}^{kv} &#x3D; W^{DKV}h_{t} \ [k_{t,1}^{c};k_{t,2}^{c};…;k_{t,n_{h}}^{c}]&#x3D;k_{t}^{c}&#x3D;W^{UK}c_{t}^{KV}, \ k_{t}^{R} &#x3D; RoPE(W^{KR}h_{t}), \ k_{t,i} &#x3D; [k_{t,i}^{C};k_{t}^{R}], \ [v_{t,1}^{C}; v_{t,2}^{C};…;v_{t, n_{h}}^{C}] &#x3D; v_{t}^{C} &#x3D; W^{UV}c_{t}^{KV}  \end{aligned} $$<br>• 여기서 $c_t^{KV} \in \mathbb{R}^{d_c}$는 key와 value의 압축된 잠재 벡터(latent vector)입니다.<br>$d_c$는 KV 압축 차원이며, $d_h \cdot n_h$보다 훨씬 작습니다 ($d_c \ll d_h n_h$).<br>• $W^{DKV} \in \mathbb{R}^{d_c \times d}$는 입력 벡터 $h_t$를 저차원으로 압축하는 다운 프로젝션 행렬입니다.<br>• $W^{UK}, W^{UV} \in \mathbb{R}^{d_h n_h \times d_c}$는 각각 압축된 벡터를 다시 키와 밸류로 복원하는 업 프로젝션 행렬입니다.<br>• $W^{KR} \in \mathbb{R}^{d_h^R \times d}$는 RoPE용 decoupled key를 생성하는 데 사용되는 행렬입니다.<br>• $\text{RoPE}(\cdot)$는 Rotary Positional Embedding을 적용하는 연산입니다.<br>• $[\cdot ; \cdot]$은 벡터 합치는 것(concatenation)을 의미합니다.</p>
+<p>  중요한 점: MLA에서는 파란색 박스로 강조된 벡터($c_t^{KV}$와 $k_t^R$)만을 생성 중에 캐시(cache)하면 되므로, 기존 MHA보다 캐시 메모리를 획기적으로 절감하면서도 유사한 성능을 유지할 수 있습니다.</p>
+<p>MLA구조에서 Query에 적용되는 저차원 압축 (low-rank) compression 방식과 그 수식을 설명하는 부분이다. Attention Query에 대해서도 V3에서는 low-rank compression을 수행하며 이는 학습 중 활성화되는 메모리 (activation memeory)를 줄일 수 있다.</p>
+<p>$$\begin{aligned} c_{t}^{Q} &#x3D; W^{DQ}h_{t} \ [q_{t, 1}^{C};q_{t,2}^{C};…;q_{t,n_{h}}^{R}]  &#x3D; q_{t}^{C}&#x3D;W^{UQ}c_{t}^{Q},\ [q_{t, 1}^{R}; q_{t, 2}^{R};…; q_{t, n_{h}}^{R}] &#x3D; q_{t}^{R}&#x3D;RoPE(W^{QR}c_{t}^{Q}), \ q_{t,i}&#x3D;[q_{t,i}^{C}; q_{t,i}^{R}] \end{aligned}$$<br>• 여기서 $c_t^Q \in \mathbb{R}^{d_c{\prime}}$는 Query를 위한 압축된 잠재 벡터(latent vector)입니다.<br>• $d_c{\prime} \ll d_h \cdot n_h$는 Query 압축 차원을 나타내며, 전체 Query 차원보다 훨씬 작습니다.<br>• $W^{DQ} \in \mathbb{R}^{d_c{\prime} \times d}, W^{UQ} \in \mathbb{R}^{d_h n_h \times d_c{\prime}}$는 각각 Query용 다운 프로젝션 및 업 프로젝션 행렬입니다.<br>• $W^{QR} \in \mathbb{R}^{d_h^R n_h \times d_c{\prime}}$는 RoPE를 적용할 decoupled Query를 생성하는 행렬입니다.</p>
+<p><strong>(추가설명)</strong> </p>
+<ul>
+<li>1단계 : 압축 (down-projection)<ul>
+<li>$c_t^Q &#x3D; W^{DQ} h_t$</li>
+<li>입력 벡터 $h_t \in \mathbb{R}^d$를 Query 전용의 저차원 공간 $d_c{\prime}$로 압축합니다.</li>
+<li>목적: 메모리 절약 및 연산 효율 향상</li>
+</ul>
+</li>
+<li>2단계 : Query 벡터 생성<ul>
+<li>$q_t^C &#x3D; W^{UQ} c_t^Q$</li>
+<li>압축된 latent vector $c_t^Q$를 통해 Query vector를 복원(업 프로젝션)합니다.</li>
+<li>생성된 $q_t^C \in \mathbb{R}^{d_h \cdot n_h}$는 head별 Query 컴포넌트로 나뉩니다</li>
+<li>$q_t^C &#x3D; [q_{t,1}^C; q_{t,2}^C; \ldots; q_{t,n_h}^C]$</li>
+</ul>
+</li>
+<li>3단계 : RoPE를 적용을 위한 Query 생성<ul>
+<li>$q_t^R &#x3D; \text{RoPE}(W^{QR} c_t^Q)$</li>
+<li>위치 정보를 부여하기 위해, 같은 $c_t^Q$에 별도 행렬 $W^{QR}$을 적용하고,</li>
+<li>결과에 RoPE(Rotary Positional Embedding)을 적용하여 위치 정보를 포함한 Query $q_t^R$ 생성</li>
+<li>마찬가지로 head별로 나눌 수 있음:</li>
+<li>$q_t^R &#x3D; [q_{t,1}^R; q_{t,2}^R; \ldots; q_{t,n_h}^R]$</li>
+</ul>
+</li>
+<li>4단계 : 최종 Query 구성<ul>
+<li>$q_{t,i} &#x3D; [q_{t,i}^C; q_{t,i}^R]$</li>
+<li>각 head의 최종 Query는 내용 기반 컴포넌트 $q_{t,i}^C$와</li>
+<li>위치 정보 컴포넌트 $q_{t,i}^R$를 결합(concatenation)한 벡터입니다.</li>
+</ul>
+</li>
+<li>정리하면, 기존 Transformer은 $h_{t}$로 부터 Query, key, value를 직접 만들지만</li>
+<li>MLA에서는 이를 압축하고 복원함으로써 1. 학습 중 메모리 사용량을 줄이고, 2. 효율적 계산 구조를 유지한다. 특히 Query까지 압축하는 것은 Training에 중점을 둔 최적화 과정이고, Key, Value 캐싱은 Inference 효율성 향상에 중점이 있다.<br><strong>(추가설명)</strong></li>
+<li>RoPE란?<ul>
+<li>2023년 Zhipu AI에서 발표한 논문으로 ROPEformer: Enhanced Transformer with Rotary Position Embedding 이라는 논문에서 처음 등장</li>
+<li>transoformer에서 positional embedding 방법 중 하나면서, 사실상 표준이 된 방식</li>
+<li>original transformer에서는 absolute positional embedding (위치 벡터 자체)를 더하는 방식이었는데 이 보다 연산적으로 유리한 측면이 있으며 위치를 표현하는데 좀더 정교하다는 장점이 있음</li>
+<li>가장 핵심은 벡터의 각 차원에 위치 정보인 회전행렬 (rotation matrix)로 주입하는 것이다. </li>
+<li>다시 쉽게 말하면, 위치에 따라 임베딩 벡터를 살짝씩 회전시켜서 상대적인 거리 정보를 간접적으로 표현할 수 있도록 하는 것이다.</li>
+<li>$$\begin{aligned} x_{t,2i}^{\text{RoPE}} &amp;&#x3D; x_{2i} \cos(\theta_i t) - x_{2i+1} \sin(\theta_i t) \ x_{t,2i+1}^{\text{RoPE}} &amp;&#x3D; x_{2i} \sin(\theta_i t) + x_{2i+1} \cos(\theta_i t) \end{aligned}$$</li>
+<li>더 자세한 내용은 <a target="_blank" rel="noopener" href="https://medium.com/@hugmanskj/mastering-llama-rotary-positional-embedding-rope-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-9b1963a22852">여기</a> 참조</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-2-DeepSeekMoE-with-Auxiliary-Loss-Free-Load-Balancing"><a href="#2-1-2-DeepSeekMoE-with-Auxiliary-Loss-Free-Load-Balancing" class="headerlink" title="2.1.2. DeepSeekMoE with Auxiliary-Loss-Free Load Balancing"></a>2.1.2. DeepSeekMoE with Auxiliary-Loss-Free Load Balancing</h4><h5 id="DeepSeekMoE의-기본-아키텍처"><a href="#DeepSeekMoE의-기본-아키텍처" class="headerlink" title="DeepSeekMoE의 기본 아키텍처"></a>DeepSeekMoE의 기본 아키텍처</h5><p>V3는 FFN(Feed-Forward-Networks)에 대해 DeepSeekMoE 아키텍처를 채택하였다. 기존의 MoE 구조인 GShard와 비교했을 때 DeepSeekMoE는 세분화된 전문가(finer-grained experts)를 사용하고 일부 전문가들은 공유 전문가(shared experts)로 독립적으로 구분하여 사용한다.</p>
+<p>토큰 $t$에 대한 FFN 입력을 $u_{t}$ (입력 임베딩)라 할 때, FFN의 출력 $h_{t}^{‘}$는 다음과 같이 계산된다.</p>
+<p>$$h^{‘}<em>{t} &#x3D; u</em>{t} + \Sigma_{i&#x3D;1}^{N_{s}}FFN_{i}^{(s)}(u_{t}) +<br>\Sigma_{i&#x3D;1}^{N_{r}}g_{i, t}FFN_{i}^{(r)}(u_{t})$$</p>
+<ul>
+<li>$h_{t}^{‘}$ : 최종 FFN 출력</li>
+<li>$u_{t}$ : 입력 임베딩</li>
+<li>$FFN_{i}^{(s)}$ : 공유 전문가 (shared expert)</li>
+<li>$FFN_{i}^{r}$ : routed 전문가</li>
+<li>$g_{i, t}$ : routed 전문가 $i$의 게이팅 값 (gating value) - weight 이라고 생각</li>
+<li><strong>(추가 수식 설명)</strong> 원래 입력 + 모든 공유 전문가의 출력 + 라우팅 된 전문가의 출력의 가중합<br>$$g_{i, t} &#x3D; \frac{g_{i, t}^{‘}}{\Sigma_{j&#x3D;1}^{N_{r}}g_{j, t}^{‘}}$$</li>
+<li><strong>(추가 수식 설명)</strong> 임시 게이팅 점수 &#x2F; 정규화된 최종 게이팅 값</li>
+</ul>
+<p>$$g_{i, t}^{‘} &#x3D; s_{i, t}, \quad s_{i, t} \in Topk({s_{j, t}|1 \leq N_{r}, K_{r}}), \quad 0 \quad otherwise$$</p>
+<ul>
+<li>$s_{i,t}$​: 토큰 $t$와 전문가 $i$의 친화도(affinity score)</li>
+<li>$Topk(⋅,K_{r}​)$: 가장 상위 $K_r$​개의 전문가만 선택</li>
+<li><strong>(추가 수식 설명)</strong> 즉 상위 $K_r$개의 expert만 선택해 $g_{i, t}^{‘}&#x3D;s_{i,t}$ 이고 나머지는 0</li>
+</ul>
+<p>$s_{i, t} &#x3D; Sigmoid(u_{t}^{T}e_{i})$</p>
+<ul>
+<li>$e_{i}$ : 라우팅 expert $i$의 중심 벡터 (centroid vector)</li>
+<li>$u_{t}^{T}e_{i}$ : 토큰과 expert 간의 내적 (&#x3D;유사도)</li>
+<li>Sigmoid는 결과를 0 ~ 1 범위로 조절</li>
+<li><strong>(추가 수식 설명)</strong> Affinity score s는 입력 벡터와 expert vector 간의 유사도를 sigmoid로 변환한 값</li>
+</ul>
+<p>여기서,</p>
+<ul>
+<li>$N_{s}$와 $N_{r}$은 각각 공유 전문가와 라우팅 전문가의 갯수를 나타낸다.</li>
+<li>$FFN_{i}^{(s)}(\cdot)$ 와 $FFN_{i}^{(r)}(\cdot)$ 은 i 번째 공유전문가와 i 번째 라우팅 전문가</li>
+<li>$K_{r}$은 활성화되는 라우팅 전문가의 수를 의미</li>
+<li>$Topk(\cdot, K)$는 토큰 $t$에 대해 계산된 모든 친화도 중에서 상위 $K$개의 점수로 이루어진 집합을 의미</li>
+</ul>
+<h5 id="Auxiliary-Loss-Free-Load-Balancing"><a href="#Auxiliary-Loss-Free-Load-Balancing" class="headerlink" title="Auxiliary-Loss-Free Load Balancing"></a>Auxiliary-Loss-Free Load Balancing</h5><ul>
+<li>MoE 모델에서 Expert 부하 balancing이 불균형해지면, routing collapse (라우팅 붕괴)가 발생하여 expert가 병렬 처리 할 때 계산 효율성이 저하되게 된다.</li>
+<li>기존의 해결책으로는 auxiliary loss (보조 손실)에 의존하여 이러한 불균형을 방지하였었다. 그러나 보조 손실이 너무 커지면 모델의 본래 성능을 저해할 수 있다. V3에서는 성능과 부하 balancing사이에 더 나은 대안을 위해 보조 손실 없는 부하 분산 전략을 새롭게 제안한다. 구체적으로 각 expert 마다 bias (편향) 항 $b_{i}$를 도입하여, 이 $b_{i}$를 각 전문가의 친화도 점수 $s_{i, t}$에 더한 뒤 상위 Top-K 라우팅을 결정한다.</li>
+<li>$$g_{i, t}^{‘} &#x3D; s_{i, t}, \quad s_{i, t}+b_{i} \in Topk({s_{j, t}+b_{j}|1 \leq j \leq N_{r}}, K_{r}), \quad 0 \quad otherwise$$</li>
+<li>$s_{i,t}$: 토큰 $t$과 expert $i$의 affinity score (기존과 동일)</li>
+<li>$b_{i}$ : expert $i$에 대한 bias term (편향값) : 이 값은 학습 과정에서 동적으로 업데이트 됨</li>
+<li>$g_{i, t}^{‘}$ : 임시 게이팅 점수 (Top-K) 선택시 사용<br>→ 즉, 편항이 적용된 친화도 $s_{i,t} + b_{i}$를 기준으로 Top-K expert를 선택하되, 선택된 이후 실제 게이팅 값은 원래의 $s_{i,t}$를 사용.결국 $b_{i}$는 routing 용도에만 결정을 미치고 실제 weighted sum에서는 사용되지 않음</li>
+</ul>
+<p><strong>(추가 설명)</strong> bias (편향) term $b_{i}$의 업데이트 방식</p>
+<ul>
+<li>각 훈련 스텝마다 전체 배치에서 expert 부하를 모니터링함</li>
+<li>특정 expert가 과부하 (overloaded) 상태라면 → $b_{i}$를 감소</li>
+<li>특정 expert가 과소활용 (underloaded) 상태라면 → $b_{i}$를 증가</li>
+<li>즉 이를 수식으로 표현하면,<ul>
+<li>$$\begin{aligned} b_{i} ← b_{i} - γ, if \quad overloaded\ b_{i} ← b_{i} + γ, if \quad underload \end{aligned}$$</li>
+</ul>
+</li>
+<li>γ : bias update speed 라는 하이퍼파라미터이다.</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>DeepSeek-V3 Technical Report 정리</p><p><a href="https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-정리/">https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-정리/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Emjay Ahn</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2025-03-24</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2025-03-25</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/LLM/">LLM</a><a class="link-muted mr-2" rel="tag" href="/tags/Paper-Summary/">Paper Summary</a><a class="link-muted mr-2" rel="tag" href="/tags/DeepSeekV3/">DeepSeekV3</a></div><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d2ca2d817ca3533" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" href="https://buymeacoffee.com/cHgDES9Ut" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>Buy me a coffee</span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2025/03/19/DeepSeekMoE-%EC%9A%94%EC%95%BD/"><span class="level-item">DeepSeekMoE 요약</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
             this.page.url = 'https://emjayahn.github.io/2025/03/24/DeepSeek-V3-Technical-Report-%EC%A0%95%EB%A6%AC/';
             this.page.identifier = '2025/03/24/DeepSeek-V3-Technical-Report-정리/';
         };
